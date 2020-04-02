@@ -1,0 +1,47 @@
+.basket-list-wrapper {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .basket-list-box {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+
+    .basket-header {
+      flex: .1;
+      display: flex;
+
+      .text-img {
+        flex: 2;
+      }
+
+      div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        font-weight: bold;
+        margin: 2px;
+        background-color: rgb(250, 232, 198);
+      }
+
+      @media (max-width:1360px){
+        div {
+          font-size: 15px;
+          margin: 1px;
+        }
+      }
+    }
+
+    .basket-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden scroll;
+    }
+  }
+}
