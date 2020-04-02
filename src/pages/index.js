@@ -1,2 +1,2 @@
-export { default as MainPage } from './MainPage';
-export { default as BasketPage } from './BasketPage';
+export { default as Home } from './home/Home';
+export { default as Basket } from './basket/Basket';
