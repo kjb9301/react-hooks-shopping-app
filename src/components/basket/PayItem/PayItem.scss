@@ -1,0 +1,36 @@
+.pay-box {
+  display: flex;
+  height: 150px;
+  border-bottom: 1px solid gray;
+
+  .pay-x {
+    flex: .2;
+    cursor: pointer;
+  }
+
+  .pay-name {
+    flex: 2;
+  }
+
+  input {
+    width: 60%;
+  }
+
+  div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  input {
+    text-align: center;
+  }
+}
+
+@media (max-width:1360px){
+  .pay-box {
+    height: 70px;
+  }
+}

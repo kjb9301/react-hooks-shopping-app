@@ -1,0 +1,51 @@
+.item-box {
+  border-bottom: 1px solid gray;
+  display: flex;
+
+  .item-img {
+    flex: 2;
+    height: 400px;
+
+    .img {
+      height: 90%;
+
+      img {
+        max-height: 100%;
+      }
+    }
+  }
+
+  @media (max-width:1360px){
+    .item-img {
+      height: 200px;
+    }
+  }
+
+  div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item-btn {
+
+    button {
+      width: 90%;
+      cursor: pointer;
+    }
+
+    @media (max-width:1360px){
+      button {
+        width: 90%;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width:1360px){
+  div {
+    font-size: 10px;
+  }
+}
