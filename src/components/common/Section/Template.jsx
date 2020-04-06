@@ -1,0 +1,19 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import Nav from '../Nav';
+
+function Template({ children }) {
+  return (
+    <>
+      <Nav />
+      <Main>{children}</Main>
+    </>
+  );
+}
+
+const Main = styled.main`
+  border: 1px solid blue;
+`;
+
+export default Template;
