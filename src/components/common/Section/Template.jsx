@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Nav from '../Nav';
+import { GlobalContextProvider } from 'contexts/ProductContext';
 
 function Template({ children }) {
   return (
     <>
       <Nav />
-      <Main>{children}</Main>
+      <Main>
+        <GlobalContextProvider>{children}</GlobalContextProvider>
+      </Main>
     </>
   );
 }
