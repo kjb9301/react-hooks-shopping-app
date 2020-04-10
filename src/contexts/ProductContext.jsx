@@ -21,13 +21,9 @@ function globalReducer(state, action) {
 }
 
 export function GlobalContextProvider({ children }) {
-  console.log(initialState);
   const [globalState, dispatch] = useReducer(globalReducer, initialState);
 
-  // useEffect(() => {
-  //   if (!localStorage.shoppingData) {
-  //   }
-  // }, []);
+  if (!globalState.productList) return null;
 
   return (
     <GlobalDispatchContext.Provider value={dispatch}>

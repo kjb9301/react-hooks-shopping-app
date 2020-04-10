@@ -3,37 +3,13 @@ import axios from 'axios';
 
 import ShoppingList from 'components/main/ShoppingList';
 import img from 'images/item.png';
+import { GlobalStateContext } from 'contexts/ProductContext';
 
 function ListContainer() {
-  const [shoppingData, setShoppingData] = useState([]);
+  const productList = useContext(GlobalStateContext).productList;
+  console.log(productList);
 
-  // const setInitData = () => {
-  //   axios
-  //     .get('dummy/goods.json')
-  //     .then((res) => {
-  //       const goods = res.data.goods.map((good) => (good = { ...good, img }));
-  //       console.log(goods);
-  //       localStorage.shoppingData = JSON.stringify(goods);
-  //     })
-  //     .then(() => {
-  //       const initData = JSON.parse(localStorage.getItem('shoppingData'));
-  //       setShoppingData(initData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   if (!localStorage.shoppingData) {
-  //     setInitData();
-  //   } else {
-  //     const initData = JSON.parse(localStorage.getItem('shoppingData'));
-  //     setShoppingData(initData);
-  //   }
-  // }, []);
-
-  return <ShoppingList shoppingList={shoppingData} />;
+  return <ShoppingList shoppingList={productList} />;
 }
 
 export default ListContainer;

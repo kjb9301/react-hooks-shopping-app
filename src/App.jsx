@@ -21,14 +21,7 @@ const setInitData = async () => {
 };
 
 function App() {
-  useEffect(() => {
-    if (!localStorage.shoppingData) {
-      console.log(111111);
-      setInitData();
-    } else {
-      console.log(111111);
-    }
-  }, []);
+  setInitData();
   return (
     <div className='wrapper'>
       <BrowserRouter>
