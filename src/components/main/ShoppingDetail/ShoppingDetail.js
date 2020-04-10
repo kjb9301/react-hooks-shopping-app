@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './ShoppingDetail.scss';
 
-const ShoppingDetail = ({detailData, selectedOption, checkBasket, HandleChangeOption}) => {
-  const { id } = detailData;
-  const selectedInfo = {id, selectedOption};
+import { GlobalStateContext } from 'contexts/ProductContext';
+
+const ShoppingDetail = ({
+  detailData,
+  selectedOption,
+  checkBasket,
+  HandleChangeOption,
+}) => {
+  // const { id } = detailData;
+  // const selectedInfo = {id, selectedOption};
+  const product = useContext(GlobalStateContext).selectedProd;
+  console.log(product);
+  // if (!product) return null;
   return (
-    <div className="detail-wrapper">
-      {detailData !== ''?
+    <div className='detail-wrapper'>
+      {/* {detailData !== ''?
         <div className="detail-box">
           <div className="detail-left">
             <img src={detailData.img} alt={detailData.name}/>
@@ -33,7 +43,7 @@ const ShoppingDetail = ({detailData, selectedOption, checkBasket, HandleChangeOp
         </div>
       :
         <div></div>
-      }
+      } */}
     </div>
   );
 };

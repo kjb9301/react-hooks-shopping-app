@@ -5,6 +5,7 @@ export const GlobalStateContext = createContext();
 const initialState = {
   productList: JSON.parse(localStorage.getItem('shoppingData')),
   basketList: [],
+  selectedProd: null,
 };
 
 export const GlobalDispatchContext = createContext();
@@ -15,6 +16,12 @@ function globalReducer(state, action) {
       return {
         productList: action.initData,
       };
+    case 'GET_PRODUCT':
+      console.log(action);
+      return {
+        ...state,
+        selectedProd: action.payload,
+      };
     default:
       return console.log('unhandled type');
   }
@@ -22,8 +29,6 @@ function globalReducer(state, action) {
 
 export function GlobalContextProvider({ children }) {
   const [globalState, dispatch] = useReducer(globalReducer, initialState);
-
-  if (!globalState.productList) return null;
 
   return (
     <GlobalDispatchContext.Provider value={dispatch}>
