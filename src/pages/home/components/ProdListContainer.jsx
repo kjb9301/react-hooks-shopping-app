@@ -2,14 +2,21 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 import ShoppingList from 'components/main/ShoppingList';
+import ShoppingDetail from 'components/main/ShoppingDetail';
 import img from 'images/item.png';
 import { GlobalStateContext } from 'contexts/ProductContext';
 
-function ListContainer() {
+function ProdListContainer() {
   const productList = useContext(GlobalStateContext).productList;
-  console.log(productList);
+  const [selectedProd, selectProd] = useState('');
+  if (!productList) return null;
 
-  return <ShoppingList shoppingList={productList} />;
+  return (
+    <>
+      <ShoppingList shoppingList={productList} />
+      <ShoppingDetail />
+    </>
+  );
 }
 
-export default ListContainer;
+export default ProdListContainer;

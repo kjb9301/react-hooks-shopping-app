@@ -17,6 +17,7 @@ function Template({ children }) {
 
 const Main = styled.main`
   border: 1px solid blue;
+  display: flex;
 `;
 
 export default Template;

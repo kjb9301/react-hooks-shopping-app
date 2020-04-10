@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 // import './ShoppingItem.scss';
 
+import { GlobalDispatchContext } from 'contexts/ProductContext';
+
 const ShoppingItem = ({ listItem, handleDetail }) => {
+  const dispatch = useContext(GlobalDispatchContext);
+  const handleClickProd = (product) => {
+    dispatch({
+      type: 'GET_PRODUCT',
+      payload: product,
+    });
+  };
   return (
     <Wrapper>
-      <Container onClick={() => handleDetail(listItem)}>
+      <Container onClick={() => handleClickProd(listItem)}>
         <ImgSection>
           <img className='item-img' src={listItem.img} alt={listItem.name} />
         </ImgSection>
