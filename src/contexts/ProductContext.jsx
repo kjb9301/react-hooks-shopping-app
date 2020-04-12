@@ -23,7 +23,7 @@ function globalReducer(state, action) {
         selectedProd: action.payload,
       };
     default:
-      return console.log('unhandled type');
+      return console.log('unhandled action type');
   }
 }
 

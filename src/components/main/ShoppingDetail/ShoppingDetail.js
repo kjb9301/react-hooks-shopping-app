@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import './ShoppingDetail.scss';
+import styled from 'styled-components';
+// import './ShoppingDetail.scss';
 
 import { GlobalStateContext } from 'contexts/ProductContext';
 
@@ -15,7 +16,7 @@ const ShoppingDetail = ({
   console.log(product);
   // if (!product) return null;
   return (
-    <div className='detail-wrapper'>
+    <Wrapper className='detail-wrapper'>
       {/* {detailData !== ''?
         <div className="detail-box">
           <div className="detail-left">
@@ -44,8 +45,15 @@ const ShoppingDetail = ({
       :
         <div></div>
       } */}
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.section`
+  height: 60%;
+  padding-top: 60px;
+  padding-left: 30px;
+  border: 1px solid red;
+`;
 
 export default ShoppingDetail;
