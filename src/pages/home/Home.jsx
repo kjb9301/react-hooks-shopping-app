@@ -24,19 +24,17 @@ function Home() {
   );
 }
 
-const ListWrapper = styled.div`
-  border: 1px solid red;
+const ListWrapper = styled.section`
   flex: 3;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: minmax(auto, auto);
   overflow: hidden scroll;
-  border: 1px solid green;
 `;
 
-const DetailWrapper = styled.div`
-  border: 1px solid blue;
+const DetailWrapper = styled.section`
   flex: 1.5;
+  padding: 10px 20px;
 `;
 
 export default Home;
