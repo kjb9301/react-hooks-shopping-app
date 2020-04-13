@@ -1,20 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
 import ProductInfo from 'pages/home/components/ProductInfo';
+import ProductOption from 'pages/home/components/ProductOption';
 import { GlobalStateContext } from 'contexts/ProductContext';
 
 const Info = ['상품명', '판매자', '상품가격', '배송비'];
 
-const ShoppingDetail = ({
-  detailData,
-  selectedOption,
-  checkBasket,
-  HandleChangeOption,
-}) => {
+const ShoppingDetail = ({ detailData, HandleChangeOption }) => {
+  const [selectedOption, selectOption] = useState('');
+  console.log(selectedOption);
+  const handleChangeOption = (e) => {
+    selectOption(e.target.value);
+  };
+
+  const checkBasket = () => {
+    console.log(basketList);
+    if (!selectedOption) return alert('옵션을 선택해 주십시오.');
+    const checkTF = basketList.some((item) => item.id === product.id);
+    if (checkTF) {
+      alert('이미 장바구니에 존재합니다.');
+    } else {
+      alert('가능');
+    }
+  };
   // const { id } = detailData;
   // const selectedInfo = {id, selectedOption};
   const product = useContext(GlobalStateContext).selectedProd;
+  const basketList = useContext(GlobalStateContext).basketList;
   console.log(product);
   if (!product) return null;
   return (
@@ -41,7 +54,8 @@ const ShoppingDetail = ({
           <span>배송비 :</span>
           {product.shipping.price}원
         </p>
-        <div className='detail-option'>
+        <ProductOption product={product} onChangeOption={handleChangeOption} />
+        {/* <div className='detail-option'>
           <select onChange={HandleChangeOption}>
             <option value=''>--옵션선택--</option>
             {product.options.map((option, index) => {
@@ -53,9 +67,9 @@ const ShoppingDetail = ({
               );
             })}
           </select>
-        </div>
+        </div> */}
         <div className='detail-btn'>
-          {/* <button onClick={() => checkBasket(selectedInfo)}>장바구니 담기</button> */}
+          <button onClick={checkBasket}>장바구니 담기</button>
         </div>
       </ContentSection>
     </Wrapper>
