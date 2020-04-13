@@ -1,25 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import Section from 'components/common/Section';
 import Template from 'components/common/Section/Template';
 // import HomeContainer from 'containers/MainPage/HomeContainer';
 import HomeContainer from './components/HomeContainer';
 import ProdListContainer from './components/ProdListContainer';
 import DetailContainer from './components/DetailContainer';
-import ShoppingList from 'components/main/ShoppingList';
-import ShoppingDetail from 'components/main/ShoppingDetail';
+import ProductList from 'pages/home/components/ProductList';
+import ProductInfo from 'pages/home/components/ProductInfo';
 
 function Home() {
   return (
     <Template>
       <ListWrapper>
-        <ShoppingList />
+        <ProductList />
       </ListWrapper>
       <DetailWrapper>
-        <ShoppingDetail />
+        <ProductInfo />
       </DetailWrapper>
-      {/* <ProdListContainer /> */}
-      {/* <DetailContainer /> */}
     </Template>
   );
 }

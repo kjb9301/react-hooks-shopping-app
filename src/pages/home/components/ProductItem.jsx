@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-// import './ShoppingItem.scss';
 
 import { GlobalDispatchContext } from 'contexts/ProductContext';
 
-const ShoppingItem = ({ listItem, handleDetail }) => {
+const ProductItem = ({ listItem }) => {
   const dispatch = useContext(GlobalDispatchContext);
   const handleClickProd = (product) => {
     dispatch({
@@ -83,4 +82,4 @@ const ContentSection = styled.section`
   }
 `;
 
-export default ShoppingItem;
+export default ProductItem;
