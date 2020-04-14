@@ -22,14 +22,8 @@ const ProductInfo = () => {
   };
 
   const dispatch = useContext(GlobalDispatchContext);
-  console.log(basketList);
-  useEffect(() => {
-    console.log('useEffect');
-    console.log(basketList);
-  }, [basketList, dispatch]);
 
   const checkBasket = () => {
-    // console.log(basketList);
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
     const checkTF = basketList.some(
       (item) =>
@@ -38,13 +32,10 @@ const ProductInfo = () => {
     if (checkTF) {
       alert('이미 장바구니에 존재합니다.');
     } else {
-      console.log(selectedOption);
       const optionIdx = product.options.findIndex(
         (option) => option.id === Number(selectedOption)
       );
-      console.log(optionIdx);
       const option = product.options[optionIdx];
-      console.log(option);
       const data = {
         id: product.id,
         name: product.name,
@@ -55,13 +46,9 @@ const ProductInfo = () => {
         shipping: product.shipping,
       };
       dispatch({
-        type: 'ADD_BASKET',
+        type: 'ADD_TO_BASKET',
         payload: data,
       });
-      // dispatch({
-      //   type: 'SET_PRODUCT',
-      //   payload: data,
-      // });
     }
   };
 

@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Template from 'components/common/Template';
-// import HomeContainer from 'containers/MainPage/HomeContainer';
 
+import Template from 'components/common/Template';
 import ProductList from 'pages/home/components/ProductList';
 import ProductInfo from 'pages/home/components/ProductInfo';
 
 function Home() {
-  console.log('Home');
   return (
     <Template>
       <ListWrapper>

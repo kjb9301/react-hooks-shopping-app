@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 function ProductOption({ options, onChangeOption }) {
-  console.log(options);
   return (
     <Wrapper>
       <span>옵션 :</span>
