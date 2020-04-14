@@ -5,7 +5,6 @@ import Nav from './Nav';
 import { GlobalContextProvider } from 'contexts/ProductContext';
 
 function Template({ children }) {
-  console.log('Template');
   return (
     <>
       <Nav />
