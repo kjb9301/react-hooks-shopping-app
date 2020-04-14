@@ -1,20 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function ProductOption({ product, onChangeOption }) {
+function ProductOption({ options, onChangeOption }) {
+  console.log(options);
   return (
-    <select onChange={onChangeOption}>
-      <option value=''>--옵션선택--</option>
-      {product.options.map((option, index) => {
-        return (
-          <option
-            key={index}
-            value={option.id}
-          >{`${option.color} / ${option.size}`}</option>
-        );
-      })}
-    </select>
+    <Wrapper>
+      <span>옵션 :</span>
+      <Select onChange={onChangeOption}>
+        <option value=''>--선택--</option>
+        {options.map((option, index) => {
+          return (
+            <option
+              key={index}
+              value={option.id}
+            >{`${option.color} / ${option.size}`}</option>
+          );
+        })}
+      </Select>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const Select = styled.select`
+  width: 150px;
+`;
 
 export default ProductOption;

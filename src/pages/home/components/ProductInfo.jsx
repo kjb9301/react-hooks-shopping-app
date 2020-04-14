@@ -1,28 +1,70 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 import ProductOption from 'pages/home/components/ProductOption';
-import { GlobalStateContext } from 'contexts/ProductContext';
+import {
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from 'contexts/ProductContext';
 
 const ProductInfo = () => {
-  const [selectedOption, selectOption] = useState('');
+  const [selectedOption, selectOption] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const product = useContext(GlobalStateContext).productOne;
+  const basketList = useContext(GlobalStateContext).basketList;
+
   const handleChangeOption = (e) => {
     selectOption(e.target.value);
   };
 
-  const checkBasket = () => {
+  const handleChangeQuantity = (e) => {
+    setQuantity(e.target.value);
+  };
+
+  const dispatch = useContext(GlobalDispatchContext);
+  console.log(basketList);
+  useEffect(() => {
+    console.log('useEffect');
     console.log(basketList);
+  }, [basketList, dispatch]);
+
+  const checkBasket = () => {
+    // console.log(basketList);
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
-    const checkTF = basketList.some((item) => item.id === product.id);
+    const checkTF = basketList.some(
+      (item) =>
+        item.id === product.id && item.option.id === Number(selectedOption)
+    );
     if (checkTF) {
       alert('이미 장바구니에 존재합니다.');
     } else {
-      alert('가능');
+      console.log(selectedOption);
+      const optionIdx = product.options.findIndex(
+        (option) => option.id === Number(selectedOption)
+      );
+      console.log(optionIdx);
+      const option = product.options[optionIdx];
+      console.log(option);
+      const data = {
+        id: product.id,
+        name: product.name,
+        provider: product.provider,
+        price: product.price,
+        option: option,
+        quantity: quantity,
+        shipping: product.shipping,
+      };
+      dispatch({
+        type: 'ADD_BASKET',
+        payload: data,
+      });
+      // dispatch({
+      //   type: 'SET_PRODUCT',
+      //   payload: data,
+      // });
     }
   };
 
-  const product = useContext(GlobalStateContext).selectedProd;
-  const basketList = useContext(GlobalStateContext).basketList;
   if (!product) return null;
   return (
     <Wrapper>
@@ -42,13 +84,26 @@ const ProductInfo = () => {
         </p>
         <p className='detail-price'>
           <span>상품가격 :</span>
-          {product.price}원
+          <span>{product.price}원</span>
         </p>
         <p className='detail-ship-price'>
           <span>배송비 :</span>
           {product.shipping.price}원
         </p>
-        <ProductOption product={product} onChangeOption={handleChangeOption} />
+        <ProductOption
+          options={product.options}
+          onChangeOption={handleChangeOption}
+        />
+        <div className='info-quantity'>
+          <span>수량 :</span>
+          <input
+            type='number'
+            value={quantity}
+            onChange={handleChangeQuantity}
+            min='1'
+            max='50'
+          />
+        </div>
         <div className='detail-btn'>
           <button onClick={checkBasket}>장바구니 담기</button>
         </div>
@@ -93,6 +148,10 @@ const ContentSection = styled.div`
 
   span {
     margin-right: 5px;
+  }
+
+  .info-quantity {
+    margin-bottom: 10px;
   }
 
   .detail-btn {
