@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
 import ProductOption from 'pages/home/components/ProductOption';
@@ -10,8 +10,10 @@ import {
 const ProductInfo = () => {
   const [selectedOption, selectOption] = useState(null);
   const [quantity, setQuantity] = useState(1);
+
   const product = useContext(GlobalStateContext).productOne;
   const basketList = useContext(GlobalStateContext).basketList;
+  const dispatch = useContext(GlobalDispatchContext);
 
   const handleChangeOption = (e) => {
     selectOption(e.target.value);
@@ -21,7 +23,30 @@ const ProductInfo = () => {
     setQuantity(e.target.value);
   };
 
-  const dispatch = useContext(GlobalDispatchContext);
+  const preprocessData = () => {
+    const optionIdx = product.options.findIndex(
+      (option) => option.id === Number(selectedOption)
+    );
+    const option = product.options[optionIdx];
+
+    const data = {
+      id: product.id,
+      name: product.name,
+      provider: product.provider,
+      price: product.price,
+      option,
+      quantity,
+      shipping: product.shipping,
+    };
+    return data;
+  };
+
+  const addToBasket = (data) => {
+    dispatch({
+      type: 'ADD_TO_BASKET',
+      payload: data,
+    });
+  };
 
   const checkBasket = () => {
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
@@ -32,23 +57,8 @@ const ProductInfo = () => {
     if (checkTF) {
       alert('이미 장바구니에 존재합니다.');
     } else {
-      const optionIdx = product.options.findIndex(
-        (option) => option.id === Number(selectedOption)
-      );
-      const option = product.options[optionIdx];
-      const data = {
-        id: product.id,
-        name: product.name,
-        provider: product.provider,
-        price: product.price,
-        option: option,
-        quantity: quantity,
-        shipping: product.shipping,
-      };
-      dispatch({
-        type: 'ADD_TO_BASKET',
-        payload: data,
-      });
+      const data = preprocessData();
+      addToBasket(data);
     }
   };
 
