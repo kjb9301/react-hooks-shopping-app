@@ -14,7 +14,7 @@ const ProductInfo = () => {
   const product = useContext(GlobalStateContext).productOne;
   const basketList = useContext(GlobalStateContext).basketList;
   const dispatch = useContext(GlobalDispatchContext);
-
+  console.log(basketList);
   const handleChangeOption = (e) => {
     selectOption(e.target.value);
   };

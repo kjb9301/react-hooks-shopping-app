@@ -1,12 +1,13 @@
 import React from 'react';
-import Section from 'components/common/Section';
-import BasketPageContainer from 'containers/BasketPage/BasketPageContainer';
 
+import Template from 'components/common/Template';
+import BasketPageContainer from 'containers/BasketPage/BasketPageContainer';
+import BasketList from './components/BasketList';
 function Basket() {
   return (
-    <Section>
-      <BasketPageContainer />
-    </Section>
+    <Template>
+      <BasketList />
+    </Template>
   );
 }
 
