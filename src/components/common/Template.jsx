@@ -9,7 +9,8 @@ function Template({ children }) {
     <>
       <Nav />
       <Main>
-        <GlobalContextProvider>{children}</GlobalContextProvider>
+        {/* <GlobalContextProvider>{children}</GlobalContextProvider> */}
+        {children}
       </Main>
     </>
   );

@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import * as Pages from 'pages';
 
+import { GlobalContextProvider } from 'contexts/ProductContext';
+
 import axios from 'axios';
 import img from 'images/item.png';
 
@@ -21,10 +23,12 @@ function App() {
   setInitData();
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={Pages.Home} />
-        <Route path='/basket' component={Pages.Basket} />
-      </Switch>
+      <GlobalContextProvider>
+        <Switch>
+          <Route exact path='/' component={Pages.Home} />
+          <Route path='/basket' component={Pages.Basket} />
+        </Switch>
+      </GlobalContextProvider>
     </BrowserRouter>
   );
 }

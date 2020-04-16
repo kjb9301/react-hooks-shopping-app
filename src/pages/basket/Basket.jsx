@@ -1,14 +1,37 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Template from 'components/common/Template';
 import BasketPageContainer from 'containers/BasketPage/BasketPageContainer';
-import BasketList from './components/BasketList';
+import BasketTable from './components/BasketTable';
+import PayTable from './components/PayTable';
 function Basket() {
   return (
     <Template>
-      <BasketList />
+      <BasketSection>
+        <BasketTable />
+      </BasketSection>
+      <PaySection>
+        <PayTable />
+      </PaySection>
     </Template>
   );
 }
+
+const BasketSection = styled.section`
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+`;
+
+const PaySection = styled.section`
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.12);
+  border: 1px solid blue;
+`;
 
 export default Basket;
