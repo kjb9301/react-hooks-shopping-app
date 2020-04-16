@@ -11,7 +11,7 @@
     flex-direction: column;
 
     .basket-header {
-      flex: .1;
+      flex: 0.1;
       display: flex;
 
       .text-img {
@@ -29,7 +29,7 @@
         background-color: rgb(250, 232, 198);
       }
 
-      @media (max-width:1360px){
+      @media (max-width: 1360px) {
         div {
           font-size: 15px;
           margin: 1px;
