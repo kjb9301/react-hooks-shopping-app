@@ -37,6 +37,7 @@ const ProductInfo = () => {
       option,
       quantity,
       shipping: product.shipping,
+      image: product.img,
     };
     return data;
   };
