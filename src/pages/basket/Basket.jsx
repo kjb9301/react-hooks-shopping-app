@@ -11,19 +11,20 @@ function Basket() {
       <BasketSection>
         <BasketTable />
       </BasketSection>
-      <PaySection>
+      {/* <PaySection>
         <PayTable />
-      </PaySection>
+      </PaySection> */}
     </Template>
   );
 }
 
 const BasketSection = styled.section`
-  flex: 3;
+  /* flex: 3; */
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid red;
+  width: 100%;
 `;
 
 const PaySection = styled.section`

@@ -5,41 +5,70 @@ function BasketItem({ item }) {
   console.log(item);
   return (
     <Wrapper className='item-box'>
-      <div className='item-img'>
+      <li className='item-chk'>
+        <input type='checkbox' checked={item.checked} />
+      </li>
+      <li className='item-img'>
         <div className='img'>
           <img src={item.image} alt={item.name} />
         </div>
-      </div>
-      <div className='item-name'>{item.name}</div>
-      <div className='item-provider'>{item.provider}</div>
-      <div className='item-option'>{`${item.option.color} / ${item.option.size}`}</div>
-      <div className='item-option'>{`${item.quantity}`}</div>
-      <div className='item-price'>{item.price}원</div>
-      <div className='item-ship-price'>{item.shipping.price}원</div>
-      <div className='item-btn'>
-        <div className='btn-order'>
-          <button>주문</button>
-        </div>
-        <div className='btn-delete'>
-          <button>삭제</button>
-        </div>
-      </div>
+      </li>
+      <li className='item-name'>{item.name}</li>
+      <li className='item-provider'>{item.provider}</li>
+      <li className='item-option'>{`${item.option.color} / ${item.option.size}`}</li>
+      <li className='item-quantity'>
+        <input type='number' value={item.quantity} />
+      </li>
+      <li className='item-price'>{item.price}원</li>
+      <li className='item-ship-price'>{item.shipping.price}원</li>
+      <li className='item-btn'>
+        <button type='button'>삭제</button>
+      </li>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.article`
   border: 1px solid red;
-  min-height: 80px;
   box-sizing: border-box;
 
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
   .item-img {
-    padding: 5px;
+    width: 200px;
     border: 1px solid blue;
 
     img {
       max-height: 100%;
     }
+  }
+
+  .item-chk {
+    width: 50px;
+  }
+
+  .item-name {
+    width: 120px;
+  }
+
+  .item-provider {
+    width: 120px;
+  }
+
+  .item-option {
+    width: 120px;
+  }
+
+  .item-quantity,
+  .item-price,
+  .item-ship-price,
+  .item-btn {
+    width: 80px;
   }
 `;
 

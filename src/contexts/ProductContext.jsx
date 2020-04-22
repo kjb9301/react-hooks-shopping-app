@@ -24,6 +24,13 @@ function globalReducer(state, action) {
         ...state,
         basketList: state.basketList.concat(action.payload),
       };
+    case 'ALL_CHECK':
+      return {
+        ...state,
+        basketList: state.basketList.map((item) => {
+          return { ...item, checked: !item.checked };
+        }),
+      };
     default:
       return console.log('unhandled action type');
   }
