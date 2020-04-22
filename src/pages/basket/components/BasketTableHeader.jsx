@@ -21,20 +21,19 @@ function BasketTableHeader({ checkedTF, onCheck }) {
 }
 
 const Wrapper = styled.ul`
-  /* flex: 0.1; */
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 
   li {
-    /* flex: 1; */
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     padding: 10px 0;
-    /* background-color: rgb(250, 232, 198); */
   }
 
   .th-chk {
@@ -45,14 +44,8 @@ const Wrapper = styled.ul`
     width: 200px;
   }
 
-  .th-name {
-    width: 120px;
-  }
-
-  .th-provider {
-    width: 120px;
-  }
-
+  .th-name,
+  .th-provider,
   .th-option {
     width: 120px;
   }
