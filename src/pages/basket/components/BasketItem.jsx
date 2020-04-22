@@ -29,8 +29,8 @@ function BasketItem({ item }) {
 }
 
 const Wrapper = styled.article`
-  border: 1px solid red;
   box-sizing: border-box;
+  border-bottom: 1px solid gray;
 
   li {
     display: flex;
@@ -41,7 +41,6 @@ const Wrapper = styled.article`
 
   .item-img {
     width: 200px;
-    border: 1px solid blue;
 
     img {
       max-height: 100%;
@@ -52,14 +51,8 @@ const Wrapper = styled.article`
     width: 50px;
   }
 
-  .item-name {
-    width: 120px;
-  }
-
-  .item-provider {
-    width: 120px;
-  }
-
+  .item-name,
+  .item-provider,
   .item-option {
     width: 120px;
   }
