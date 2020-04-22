@@ -11,17 +11,15 @@ function BasketList() {
   return (
     <Wrapper>
       {basketList.map((item) => {
-        return <BasketItem item={item} />;
+        return <BasketItem key={item.id} item={item} />;
       })}
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden scroll;
   border: 1px solid red;
 `;
 

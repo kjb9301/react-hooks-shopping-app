@@ -38,6 +38,7 @@ const ProductInfo = () => {
       quantity,
       shipping: product.shipping,
       image: product.img,
+      checked: true,
     };
     return data;
   };
