@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
+import ConfirmModal from 'components/common/ConfirmModal';
 import ProductOption from 'pages/home/components/ProductOption';
 import {
   GlobalStateContext,
@@ -10,6 +12,7 @@ import {
 const ProductInfo = () => {
   const [selectedOption, selectOption] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const history = useHistory();
 
   const product = useContext(GlobalStateContext).productOne;
   const basketList = useContext(GlobalStateContext).basketList;
@@ -50,7 +53,18 @@ const ProductInfo = () => {
     });
   };
 
-  const checkBasket = () => {
+  const confirmModal = () => {
+    const result = window.confirm('장바구니로 이동하시겠습니까?');
+    console.log(result);
+    if (result) {
+      console.log(history);
+      history.push('/basket');
+    } else {
+      return;
+    }
+  };
+
+  const checkBasket = async () => {
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
     const checkTF = basketList.some(
       (item) =>
@@ -60,7 +74,8 @@ const ProductInfo = () => {
       alert('이미 장바구니에 존재합니다.');
     } else {
       const data = preprocessData();
-      addToBasket(data);
+      await addToBasket(data);
+      confirmModal();
     }
   };
 
@@ -104,7 +119,9 @@ const ProductInfo = () => {
           />
         </div>
         <div className='detail-btn'>
-          <button onClick={checkBasket}>장바구니 담기</button>
+          <button type='submit' onClick={checkBasket}>
+            장바구니 담기
+          </button>
         </div>
       </ContentSection>
     </Wrapper>
@@ -154,11 +171,11 @@ const ContentSection = styled.div`
   }
 
   .detail-btn {
+    height: 30px;
+
     button {
       width: 100%;
       height: 100%;
-      border-radius: 20px;
-      font-size: 30px;
       background-color: rgb(235, 233, 231);
       border: none;
       cursor: pointer;
