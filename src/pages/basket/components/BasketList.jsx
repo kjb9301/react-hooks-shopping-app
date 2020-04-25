@@ -7,7 +7,7 @@ import { GlobalStateContext } from 'contexts/ProductContext';
 function BasketList() {
   const basketList = useContext(GlobalStateContext).basketList;
   console.log(basketList);
-  if (!basketList) return null;
+  if (!basketList) return <None>장바구니에 담긴 상품이 없습니다.</None>;
   return (
     <Wrapper>
       {basketList.map((item) => {
@@ -20,6 +20,14 @@ function BasketList() {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const None = styled.div`
+  border-bottom: 1px solid gray;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default BasketList;

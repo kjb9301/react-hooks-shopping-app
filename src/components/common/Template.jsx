@@ -18,6 +18,8 @@ function Template({ children }) {
 
 const Main = styled.main`
   display: flex;
+  border: 1px solid blue;
+  height: 100%;
 `;
 
 export default Template;
