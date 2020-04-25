@@ -5,11 +5,13 @@ import Template from 'components/common/Template';
 import BasketPageContainer from 'containers/BasketPage/BasketPageContainer';
 import BasketTable from './components/BasketTable';
 import PayTable from './components/PayTable';
+import CartSum from './components/CartSum';
 function Basket() {
   return (
     <Template>
       <BasketSection>
         <BasketTable />
+        <CartSum />
       </BasketSection>
       {/* <PaySection>
         <PayTable />
@@ -19,10 +21,14 @@ function Basket() {
 }
 
 const BasketSection = styled.section`
-  display: flex;
-  align-items: center;
+  /* display: flex; */
   justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+  /* position: relative; */
   width: 100%;
+  border: 1px solid red;
+  height: 100%;
 `;
 
 const PaySection = styled.section`

@@ -53,7 +53,7 @@ const ProductInfo = () => {
     });
   };
 
-  const confirmModal = () => {
+  const handleConfirmModal = () => {
     const result = window.confirm('장바구니로 이동하시겠습니까?');
     console.log(result);
     if (result) {
@@ -75,7 +75,7 @@ const ProductInfo = () => {
     } else {
       const data = preprocessData();
       await addToBasket(data);
-      confirmModal();
+      handleConfirmModal();
     }
   };
 

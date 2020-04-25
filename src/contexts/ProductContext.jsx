@@ -4,7 +4,7 @@ export const GlobalStateContext = createContext();
 
 const initialState = {
   productList: JSON.parse(localStorage.getItem('shoppingData')),
-  basketList: [],
+  basketList: null,
   productOne: null,
   selectedProd: null,
 };

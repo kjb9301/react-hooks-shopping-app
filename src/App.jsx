@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
 import * as Pages from 'pages';
 
 import { GlobalContextProvider } from 'contexts/ProductContext';
@@ -22,15 +23,29 @@ const setInitData = async () => {
 function App() {
   setInitData();
   return (
-    <BrowserRouter>
-      <GlobalContextProvider>
-        <Switch>
-          <Route exact path='/' component={Pages.Home} />
-          <Route path='/basket' component={Pages.Basket} />
-        </Switch>
-      </GlobalContextProvider>
-    </BrowserRouter>
+    <>
+      <GlobalStyle />
+      <BrowserRouter>
+        <GlobalContextProvider>
+          <Switch>
+            <Route exact path='/' component={Pages.Home} />
+            <Route path='/basket' component={Pages.Basket} />
+          </Switch>
+        </GlobalContextProvider>
+      </BrowserRouter>
+    </>
   );
 }
+
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  #root {
+    height: 100%;
+  }
+`;
 
 export default App;

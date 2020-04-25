@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 function BasketItem({ item }) {
   console.log(item);
+  const [quantity, setQuantity] = useState(item.quantity);
+  const handleQuantity = (e) => {
+    setQuantity(e.target.value);
+  };
+
   return (
     <Wrapper className='item-box'>
       <li className='item-chk'>
@@ -17,7 +22,7 @@ function BasketItem({ item }) {
       <li className='item-provider'>{item.provider}</li>
       <li className='item-option'>{`${item.option.color} / ${item.option.size}`}</li>
       <li className='item-quantity'>
-        <input type='number' value={item.quantity} />
+        <input type='number' value={quantity} onChange={handleQuantity} />
       </li>
       <li className='item-price'>{item.price}원</li>
       <li className='item-ship-price'>{item.shipping.price}원</li>
@@ -57,7 +62,14 @@ const Wrapper = styled.article`
     width: 120px;
   }
 
-  .item-quantity,
+  .item-quantity {
+    width: 80px;
+
+    input {
+      width: 100%;
+    }
+  }
+
   .item-price,
   .item-ship-price,
   .item-btn {
