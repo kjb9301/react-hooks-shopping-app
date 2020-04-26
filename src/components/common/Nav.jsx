@@ -5,14 +5,14 @@ import styled from 'styled-components';
 function Nav() {
   return (
     <Wrapper>
-      <Menu>
-        <Item>
+      <NavBar>
+        <Menu>
           <Link to='/'>상품목록</Link>
-        </Item>
-        <Item>
+        </Menu>
+        <Menu>
           <Link to='/basket'>장바구니</Link>
-        </Item>
-      </Menu>
+        </Menu>
+      </NavBar>
     </Wrapper>
   );
 }
@@ -28,13 +28,13 @@ const Wrapper = styled.nav`
   margin-bottom: 20px;
 `;
 
-const Menu = styled.ul`
+const NavBar = styled.ul`
   width: 100%;
   padding-left: 5%;
   display: flex;
 `;
 
-const Item = styled.li`
+const Menu = styled.li`
   font-size: 2rem;
   line-height: 5rem;
   list-style: none;
@@ -46,15 +46,6 @@ const Item = styled.li`
   &:hover {
     cursor: pointer;
     box-shadow: 0 3px 0 rgb(107, 106, 106);
-  }
-
-  a {
-    text-decoration: none;
-
-    &:visited {
-      text-decoration: none;
-      color: rgb(107, 106, 106);
-    }
   }
 
   @media (max-width: 1360px) {
