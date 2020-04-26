@@ -46,6 +46,15 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
   }
+
+  a {
+    text-decoration: none;
+
+    &:visited {
+      text-decoration: none;
+      color: rgb(107, 106, 106);
+    }
+  }
 `;
 
 export default App;

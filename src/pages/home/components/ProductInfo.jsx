@@ -66,10 +66,12 @@ const ProductInfo = () => {
 
   const checkBasket = async () => {
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
-    const checkTF = basketList.some(
-      (item) =>
-        item.id === product.id && item.option.id === Number(selectedOption)
-    );
+    const checkTF =
+      basketList &&
+      basketList.some(
+        (item) =>
+          item.id === product.id && item.option.id === Number(selectedOption)
+      );
     if (checkTF) {
       alert('이미 장바구니에 존재합니다.');
     } else {
