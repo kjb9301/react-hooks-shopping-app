@@ -7,9 +7,11 @@ function BasketItem({ item }) {
   console.log(item);
   const [quantity, setQuantity] = useState(item.quantity);
   const dispatch = useContext(GlobalDispatchContext);
+
   const handleQuantity = (e) => {
     setQuantity(e.target.value);
   };
+
   const handleCheck = () => {
     dispatch({
       type: 'HANDLE_CHECK',
@@ -20,7 +22,7 @@ function BasketItem({ item }) {
   return (
     <Wrapper className='item-box'>
       <li className='item-chk'>
-        <input type='checkbox' checked={item.checked} onClick={handleCheck} />
+        <input type='checkbox' checked={item.checked} onChange={handleCheck} />
       </li>
       <li className='item-img'>
         <div className='img'>

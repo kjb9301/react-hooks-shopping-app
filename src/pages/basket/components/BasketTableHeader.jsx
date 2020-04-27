@@ -6,7 +6,7 @@ function BasketTableHeader({ checkedTF, onCheck }) {
   return (
     <Wrapper>
       <li className='th-chk'>
-        <input type='checkbox' checked={checkedTF} onClick={onCheck} />
+        <input type='checkbox' checked={checkedTF} onChange={onCheck} />
       </li>
       <li className='th-img'></li>
       <li className='th-name'>상품명</li>
