@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { GlobalStateContext } from 'contexts/ProductContext';
+
 function CartSum() {
+  const { basketList } = useContext(GlobalStateContext);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const totalSum = basketList.reduce((acc, cur) => {
+      return cur.checked ? acc + cur.price : acc + 0;
+    }, 0);
+    setTotalPrice(totalSum);
+  }, [basketList, totalPrice]);
+
   return (
     <Wrapper>
       <div className='box-sum'>
-        <span>100</span>
+        <span>{totalPrice}</span>
         <span>원</span>
       </div>
       <div className='box-btn'>
