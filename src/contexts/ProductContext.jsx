@@ -4,7 +4,7 @@ export const GlobalStateContext = createContext();
 
 const initialState = {
   productList: JSON.parse(localStorage.getItem('shoppingData')),
-  basketList: null,
+  basketList: null || [],
   productOne: null,
   selectedProd: null,
 };
@@ -30,6 +30,16 @@ function globalReducer(state, action) {
         basketList: state.basketList.map((item) => {
           return { ...item, checked: !item.checked };
         }),
+      };
+    case 'HANDLE_CHECK':
+      console.log('handlecheck', state.totalPrice);
+      return {
+        ...state,
+        basketList: state.basketList.map((item) =>
+          item.id === action.payload
+            ? { ...item, checked: !item.checked }
+            : item
+        ),
       };
     default:
       return console.log('unhandled action type');

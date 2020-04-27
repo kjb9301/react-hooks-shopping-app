@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+
+import { GlobalDispatchContext } from 'contexts/ProductContext';
 
 function BasketItem({ item }) {
   console.log(item);
   const [quantity, setQuantity] = useState(item.quantity);
+  const dispatch = useContext(GlobalDispatchContext);
   const handleQuantity = (e) => {
     setQuantity(e.target.value);
+  };
+  const handleCheck = () => {
+    dispatch({
+      type: 'HANDLE_CHECK',
+      payload: item.id,
+    });
   };
 
   return (
     <Wrapper className='item-box'>
       <li className='item-chk'>
-        <input type='checkbox' checked={item.checked} />
+        <input type='checkbox' checked={item.checked} onClick={handleCheck} />
       </li>
       <li className='item-img'>
         <div className='img'>
