@@ -16,12 +16,14 @@ function CartSum() {
 
   return (
     <Wrapper>
-      <div className='box-sum'>
+      <div className='box-price'>
         <span>{totalPrice}</span>
         <span>원</span>
       </div>
       <div className='box-btn'>
-        <button type='submit'>주문하기</button>
+        <button type='submit' className='btn-order'>
+          주문하기
+        </button>
       </div>
     </Wrapper>
   );
@@ -35,21 +37,23 @@ const Wrapper = styled.div`
   min-height: 60px;
   display: flex;
   border-radius: 10px;
+  border: 2px solid #000000;
 
-  .box-sum {
+  .box-price {
     flex: 2;
-    border: 1px solid red;
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
+    border-radius: 10px;
   }
 
   .box-btn {
     flex: 1;
+    border-radius: 10px;
 
-    button {
+    .btn-order {
       border: none;
       width: 100%;
       height: 100%;

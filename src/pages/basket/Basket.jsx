@@ -21,13 +21,7 @@ function Basket() {
 }
 
 const BasketSection = styled.section`
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
-  /* flex-direction: column; */
-  /* position: relative; */
   width: 100%;
-  border: 1px solid red;
   height: 100%;
 `;
 
