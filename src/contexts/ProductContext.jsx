@@ -14,7 +14,6 @@ export const GlobalDispatchContext = createContext();
 function globalReducer(state, action) {
   switch (action.type) {
     case 'GET_PRODUCT':
-      console.log(action);
       return {
         ...state,
         productOne: action.payload,
@@ -32,7 +31,6 @@ function globalReducer(state, action) {
         }),
       };
     case 'HANDLE_CHECK':
-      console.log('handlecheck', state.totalPrice);
       return {
         ...state,
         basketList: state.basketList.map((item) =>
@@ -40,6 +38,11 @@ function globalReducer(state, action) {
             ? { ...item, checked: !item.checked }
             : item
         ),
+      };
+    case 'REMOVE_IN_CART':
+      return {
+        ...state,
+        basketList: state.basketList.filter((item) => item.id !== action.id),
       };
     default:
       return console.log('unhandled action type');
