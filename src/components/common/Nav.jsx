@@ -1,6 +1,6 @@
 import React from 'react';
-import { useLocation, useHistory } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const navInfo = [
@@ -10,36 +10,16 @@ const navInfo = [
 
 function Nav() {
   const location = useLocation();
-  const match = useHistory();
-  console.log(location);
-  console.log(match);
   return (
     <Wrapper>
       <NavBar>
         {navInfo.map((info) => {
           return (
-            <Menu>
-              <NavLink
-                to={info.path}
-                activeClassName={
-                  location.pathname === info.path ? 'selected' : ''
-                }
-              >
-                {info.menu}
-              </NavLink>
+            <Menu className={location.pathname === info.path ? 'selected' : ''}>
+              <Link to={info.path}>{info.menu}</Link>
             </Menu>
           );
         })}
-        {/* <Menu>
-          <NavLink to='/' activeClassName='selected'>
-            상품목록
-          </NavLink>
-        </Menu>
-        <Menu>
-          <NavLink to='/basket' activeClassName='selected'>
-            장바구니
-          </NavLink>
-        </Menu> */}
       </NavBar>
     </Wrapper>
   );
@@ -60,6 +40,16 @@ const NavBar = styled.ul`
   width: 100%;
   padding-left: 5%;
   display: flex;
+
+  .selected {
+    box-shadow: 0 3px 0 rgb(107, 106, 106);
+  }
+
+  @media (max-width: 1360px) {
+    .selected {
+      box-shadow: 0 2px 0 rgb(107, 106, 106);
+    }
+  }
 `;
 
 const Menu = styled.li`
@@ -68,29 +58,15 @@ const Menu = styled.li`
   list-style: none;
   padding: 0 20px 0 20px;
   font-weight: bolder;
-  color: #ccc;
   margin-right: 10px;
-
-  .selected {
-    box-shadow: 0 3px 0 rgb(107, 106, 106);
-  }
 
   &:hover {
     cursor: pointer;
-    /* box-shadow: 0 3px 0 rgb(107, 106, 106); */
   }
 
   @media (max-width: 1360px) {
     font-size: 1rem;
     line-height: 3rem;
-
-    .selected {
-      box-shadow: 0 2px 0 rgb(107, 106, 106);
-    }
-
-    &:hover {
-      /* box-shadow: 0 2px 0 rgb(107, 106, 106); */
-    }
   }
 `;
 
