@@ -19,6 +19,13 @@ function BasketItem({ item }) {
     });
   };
 
+  const handleClickRemove = () => {
+    dispatch({
+      type: 'REMOVE_IN_CART',
+      id: item.id,
+    });
+  };
+
   return (
     <Wrapper className='item-box'>
       <li className='item-chk'>
@@ -38,7 +45,9 @@ function BasketItem({ item }) {
       <li className='item-price'>{item.price}원</li>
       <li className='item-ship-price'>{item.shipping.price}원</li>
       <li className='item-btn'>
-        <button type='button'>삭제</button>
+        <button type='button' onClick={handleClickRemove}>
+          삭제
+        </button>
       </li>
     </Wrapper>
   );
