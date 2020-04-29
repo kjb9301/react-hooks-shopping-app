@@ -9,7 +9,7 @@ function CartSum() {
 
   useEffect(() => {
     const totalSum = basketList.reduce((acc, cur) => {
-      return cur.checked ? acc + cur.price : acc + 0;
+      return cur.checked ? acc + cur.price * cur.quantity : acc + 0;
     }, 0);
     setTotalPrice(totalSum);
   }, [basketList, totalPrice]);

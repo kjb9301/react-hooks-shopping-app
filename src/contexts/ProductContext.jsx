@@ -30,7 +30,7 @@ function globalReducer(state, action) {
           return { ...item, checked: !item.checked };
         }),
       };
-    case 'HANDLE_CHECK':
+    case 'CHECK_CART_PRODUCT':
       return {
         ...state,
         basketList: state.basketList.map((item) =>
@@ -43,6 +43,15 @@ function globalReducer(state, action) {
       return {
         ...state,
         basketList: state.basketList.filter((item) => item.id !== action.id),
+      };
+    case 'UPDATE_QUANTITY':
+      const { id, value } = action.payload;
+      console.log(action.payload);
+      return {
+        ...state,
+        basketList: state.basketList.map((item) =>
+          item.id === id ? { ...item, quantity: value } : item
+        ),
       };
     default:
       return console.log('unhandled action type');
