@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { GlobalDispatchContext } from 'contexts/ProductContext';
@@ -6,15 +6,31 @@ import { GlobalDispatchContext } from 'contexts/ProductContext';
 function BasketItem({ item }) {
   console.log(item);
   const [quantity, setQuantity] = useState(item.quantity);
+  console.log('quantity', quantity);
+  console.log('item quantity', item.quantity);
   const dispatch = useContext(GlobalDispatchContext);
 
-  const handleQuantity = (e) => {
-    setQuantity(e.target.value);
+  const handleQuantity = useCallback(
+    (e) => {
+      setQuantity(Number(e.target.value));
+      updateQuantity();
+    },
+    [quantity]
+  );
+
+  const updateQuantity = () => {
+    dispatch({
+      type: 'UPDATE_QUANTITY',
+      payload: {
+        id: item.id,
+        value: quantity,
+      },
+    });
   };
 
-  const handleCheck = () => {
+  const handleChangeCheck = () => {
     dispatch({
-      type: 'HANDLE_CHECK',
+      type: 'CHECK_CART_PRODUCT',
       payload: item.id,
     });
   };
@@ -29,7 +45,11 @@ function BasketItem({ item }) {
   return (
     <Wrapper className='item-box'>
       <li className='item-chk'>
-        <input type='checkbox' checked={item.checked} onChange={handleCheck} />
+        <input
+          type='checkbox'
+          checked={item.checked}
+          onChange={handleChangeCheck}
+        />
       </li>
       <li className='item-img'>
         <div className='img'>
@@ -40,7 +60,12 @@ function BasketItem({ item }) {
       <li className='item-provider'>{item.provider}</li>
       <li className='item-option'>{`${item.option.color} / ${item.option.size}`}</li>
       <li className='item-quantity'>
-        <input type='number' value={quantity} onChange={handleQuantity} />
+        <input
+          type='number'
+          value={quantity}
+          onChange={handleQuantity}
+          min='1'
+        />
       </li>
       <li className='item-price'>{item.price}원</li>
       <li className='item-ship-price'>{item.shipping.price}원</li>
