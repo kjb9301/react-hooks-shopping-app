@@ -1,18 +1,20 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
 import { GlobalStateContext } from 'contexts/ProductContext';
 
 function CartSum() {
   const { basketList } = useContext(GlobalStateContext);
-  const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {
-    const totalSum = basketList.reduce((acc, cur) => {
+  const getTotalPrice = () => {
+    const priceSum = basketList.reduce((acc, cur) => {
       return cur.checked ? acc + cur.price * cur.quantity : acc + 0;
     }, 0);
-    setTotalPrice(totalSum);
-  }, [basketList, totalPrice]);
+
+    return priceSum;
+  };
+
+  const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
   return (
     <Wrapper>
