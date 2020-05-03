@@ -5,7 +5,7 @@ import { GlobalStateContext } from 'contexts/ProductContext';
 
 function CartSum() {
   const { basketList } = useContext(GlobalStateContext);
-
+  console.log('cartsum', basketList);
   const getTotalPrice = () => {
     const priceSum = basketList.reduce((acc, cur) => {
       return cur.checked ? acc + cur.price * cur.quantity : acc + 0;

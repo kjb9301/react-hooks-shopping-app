@@ -1,24 +1,20 @@
-import React, { useState, useContext, useCallback } from 'react';
+import React, { useContext, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { GlobalDispatchContext } from 'contexts/ProductContext';
 
 function BasketItem({ item }) {
-  console.log(item);
-  const [quantity, setQuantity] = useState(item.quantity);
-  console.log('quantity', quantity);
-  console.log('item quantity', item.quantity);
   const dispatch = useContext(GlobalDispatchContext);
 
   const handleQuantity = useCallback(
     (e) => {
-      setQuantity(Number(e.target.value));
-      updateQuantity();
+      const quantity = Number(e.target.value);
+      updateQuantity(quantity);
     },
-    [quantity]
+    [item.quantity]
   );
 
-  const updateQuantity = () => {
+  const updateQuantity = (quantity) => {
     dispatch({
       type: 'UPDATE_QUANTITY',
       payload: {
@@ -28,12 +24,12 @@ function BasketItem({ item }) {
     });
   };
 
-  const handleChangeCheck = () => {
+  const handleChangeCheck = useCallback(() => {
     dispatch({
       type: 'CHECK_CART_PRODUCT',
       payload: item.id,
     });
-  };
+  }, [item.checked]);
 
   const handleClickRemove = () => {
     dispatch({
@@ -62,7 +58,7 @@ function BasketItem({ item }) {
       <li className='item-quantity'>
         <input
           type='number'
-          value={quantity}
+          value={item.quantity}
           onChange={handleQuantity}
           min='1'
         />
