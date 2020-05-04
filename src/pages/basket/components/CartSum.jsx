@@ -1,11 +1,15 @@
 import React, { useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
-import { GlobalStateContext } from 'contexts/ProductContext';
+import {
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from 'contexts/ProductContext';
 
 function CartSum() {
-  const { basketList } = useContext(GlobalStateContext);
-  console.log('cartsum', basketList);
+  const { productList, basketList, orderList } = useContext(GlobalStateContext);
+  const dispatch = useContext(GlobalDispatchContext);
+  console.log('orderList', orderList);
   const getTotalPrice = () => {
     const priceSum = basketList.reduce((acc, cur) => {
       return cur.checked ? acc + cur.price * cur.quantity : acc + 0;
@@ -16,6 +20,32 @@ function CartSum() {
 
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
+  const handleClickOrder = () => {
+    dispatch({
+      type: 'GET_ORDERS',
+    });
+    const result = window.confirm('주문하시겠습니까?');
+    if (result) {
+      postOrders();
+    } else {
+      return;
+    }
+  };
+
+  const getOrder = () => {
+    dispatch({
+      type: 'GET_ORDERS',
+    });
+  };
+
+  const postOrders = (orderArr) => {
+    dispatch({
+      type: 'POST_ORDERS',
+    });
+  };
+
+  console.log('productList', productList);
+
   return (
     <Wrapper>
       <div className='box-price'>
@@ -23,7 +53,7 @@ function CartSum() {
         <span>원</span>
       </div>
       <div className='box-btn'>
-        <button type='submit' className='btn-order'>
+        <button type='submit' className='btn-order' onClick={handleClickOrder}>
           주문하기
         </button>
       </div>
