@@ -7,6 +7,7 @@ const initialState = {
   basketList: null || [],
   productOne: null,
   selectedProd: null,
+  orderList: null,
 };
 
 export const GlobalDispatchContext = createContext();
@@ -52,6 +53,25 @@ function globalReducer(state, action) {
         basketList: state.basketList.map((item) =>
           item.id === id ? { ...item, quantity: value } : item
         ),
+      };
+    case 'GET_ORDERS':
+      return {
+        ...state,
+        orderList: state.basketList.filter((item) => item.checked === true),
+        basketList: state.basketList.filter((item) => item.checked === false),
+      };
+    case 'POST_ORDERS':
+      return {
+        ...state,
+        productList: state.productList.map((item) => {
+          state.orderList.map((order) => {
+            if (item.id === order.id) {
+              console.log(order);
+              return { ...item, stock: item.stock - order.quantity };
+            }
+            return;
+          });
+        }),
       };
     default:
       return console.log('unhandled action type');
