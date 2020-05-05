@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-import ConfirmModal from 'components/common/ConfirmModal';
 import ProductOption from 'pages/home/components/ProductOption';
 import {
   GlobalStateContext,

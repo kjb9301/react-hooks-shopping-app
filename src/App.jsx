@@ -10,7 +10,7 @@ import img from 'images/item.png';
 
 const setInitData = async () => {
   await axios
-    .get('dummy/goods.json')
+    .get('data/goods.json')
     .then((res) => {
       const goods = res.data.goods.map((good) => (good = { ...good, img }));
       localStorage.shoppingData = JSON.stringify(goods);
