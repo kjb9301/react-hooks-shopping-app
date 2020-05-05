@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Template from 'components/common/Template';
-import ProductList from 'pages/home/components/ProductList';
-import ProductInfo from 'pages/home/components/ProductInfo';
+import Template from 'components/Template';
+import ProductList from './components/ProductList';
+import ProductInfo from './components/ProductInfo';
 
 function Home() {
   return (
