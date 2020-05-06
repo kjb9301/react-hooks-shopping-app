@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -9,7 +9,7 @@ import {
 function CartSum() {
   const { productList, basketList, orderList } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
-  console.log('orderList', orderList);
+
   const getTotalPrice = () => {
     const priceSum = basketList.reduce((acc, cur) => {
       return cur.checked ? acc + cur.price * cur.quantity : acc + 0;
@@ -18,15 +18,23 @@ function CartSum() {
     return priceSum;
   };
 
+  useEffect(() => {
+    // console.log('cartSum prod', productList);
+  }, [productList]);
+
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
-  const handleClickOrder = () => {
-    dispatch({
-      type: 'GET_ORDERS',
-    });
+  const handleClickOrder = async () => {
+    console.log('productList', productList);
+    console.log('basketList', basketList);
+    console.log('orderList', orderList);
+    await getOrder();
+    console.log('after get orders');
     const result = window.confirm('주문하시겠습니까?');
     if (result) {
-      postOrders();
+      console.log('confirm');
+      const test = postOrders();
+      console.log(test);
     } else {
       return;
     }
@@ -38,13 +46,18 @@ function CartSum() {
     });
   };
 
-  const postOrders = (orderArr) => {
-    dispatch({
-      type: 'POST_ORDERS',
+  const postOrders = () => {
+    productList.map((item) => {
+      orderList &&
+        orderList.map((order) => {
+          console.log(order);
+          if (item.id === order.id) {
+            return { ...item, stock: item.stock - order.quantity };
+          }
+          return;
+        });
     });
   };
-
-  console.log('productList', productList);
 
   return (
     <Wrapper>

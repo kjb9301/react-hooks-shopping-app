@@ -3,7 +3,8 @@ import React, { createContext, useReducer } from 'react';
 export const GlobalStateContext = createContext();
 
 const initialState = {
-  productList: JSON.parse(localStorage.getItem('shoppingData')),
+  // productList: JSON.parse(localStorage.getItem('shoppingData')),
+  productList: null,
   basketList: null || [],
   productOne: null,
   selectedProd: null,
@@ -14,6 +15,12 @@ export const GlobalDispatchContext = createContext();
 
 function globalReducer(state, action) {
   switch (action.type) {
+    case 'GET_PRODUCTS':
+      console.log(action.payload);
+      return {
+        ...state,
+        productList: action.payload,
+      };
     case 'GET_PRODUCT':
       return {
         ...state,
@@ -55,6 +62,7 @@ function globalReducer(state, action) {
         ),
       };
     case 'GET_ORDERS':
+      console.log('get orders');
       return {
         ...state,
         orderList: state.basketList.filter((item) => item.checked === true),
