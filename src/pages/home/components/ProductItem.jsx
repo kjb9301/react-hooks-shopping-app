@@ -42,8 +42,6 @@ const Wrapper = styled.article`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10% 0;
-  width: 80%;
   height: 100%;
   box-shadow: 2px 1px 0 lightgray;
 
