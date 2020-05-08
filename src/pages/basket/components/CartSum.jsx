@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, {
+  useState,
+  useContext,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
 import styled from 'styled-components';
 
 import {
@@ -8,6 +14,7 @@ import {
 
 function CartSum() {
   const { productList, basketList, orderList } = useContext(GlobalStateContext);
+  const [status, setStatus] = useState(false);
   const dispatch = useContext(GlobalDispatchContext);
 
   const getTotalPrice = () => {
@@ -18,27 +25,27 @@ function CartSum() {
     return priceSum;
   };
 
-  useEffect(() => {
-    // console.log('cartSum prod', productList);
-  }, [productList]);
-
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
-  const handleClickOrder = async () => {
+  const handleClickOrder = () => {
     console.log('productList', productList);
     console.log('basketList', basketList);
     console.log('orderList', orderList);
-    await getOrder();
+    getOrder();
     console.log('after get orders');
     const result = window.confirm('주문하시겠습니까?');
     if (result) {
+      handleStatus();
       console.log('confirm');
-      const test = postOrders();
-      console.log(test);
+      postOrders();
     } else {
       return;
     }
   };
+
+  const handleStatus = useCallback(() => {
+    setStatus(!status);
+  }, [status]);
 
   const getOrder = () => {
     dispatch({
@@ -46,18 +53,20 @@ function CartSum() {
     });
   };
 
-  const postOrders = () => {
-    productList.map((item) => {
-      orderList &&
-        orderList.map((order) => {
-          console.log(order);
-          if (item.id === order.id) {
-            return { ...item, stock: item.stock - order.quantity };
-          }
-          return;
-        });
-    });
-  };
+  const postOrders = useEffect(() => {
+    console.log(11111);
+    productList &&
+      productList.map((item) => {
+        orderList &&
+          orderList.map((order) => {
+            console.log(order);
+            if (item.id === order.id) {
+              return { ...item, stock: item.stock - order.quantity };
+            }
+            return;
+          });
+      });
+  }, [status]);
 
   return (
     <Wrapper>

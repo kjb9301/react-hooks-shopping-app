@@ -26,14 +26,19 @@ function Nav() {
 }
 
 const Wrapper = styled.nav`
-  height: 60px;
+  height: 100px;
   display: flex;
   align-items: center;
   border-bottom: 2px solid #ccc;
   background-color: rgb(230, 227, 224);
   border-radius: 8px;
-  padding: 0 10px;
-  margin-bottom: 20px;
+  padding: 0 20px;
+  margin-bottom: 60px;
+
+  @media (max-width: 1360px) {
+    height: 70px;
+    margin-bottom: 40px;
+  }
 `;
 
 const NavBar = styled.ul`
@@ -53,10 +58,10 @@ const NavBar = styled.ul`
 `;
 
 const Menu = styled.li`
-  font-size: 2rem;
-  line-height: 5rem;
+  font-size: 1.5rem;
+  line-height: 4rem;
   list-style: none;
-  padding: 0 20px 0 20px;
+  padding: 0 30px;
   font-weight: bolder;
   margin-right: 10px;
 
@@ -66,7 +71,8 @@ const Menu = styled.li`
 
   @media (max-width: 1360px) {
     font-size: 1rem;
-    line-height: 3rem;
+    line-height: 2.5rem;
+    padding: 0 20px;
   }
 `;
 

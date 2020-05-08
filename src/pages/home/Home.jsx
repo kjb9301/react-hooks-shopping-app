@@ -23,6 +23,8 @@ const ListWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: minmax(auto, auto);
+  gap: 5%;
+  padding: 0 20px;
   overflow: hidden scroll;
 `;
 
