@@ -13,6 +13,7 @@ import {
 } from 'contexts/ProductContext';
 
 function CartSum() {
+  console.log('cartSum render');
   const { productList, basketList, orderList } = useContext(GlobalStateContext);
   const [status, setStatus] = useState(false);
   const dispatch = useContext(GlobalDispatchContext);
@@ -28,15 +29,10 @@ function CartSum() {
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
   const handleClickOrder = () => {
-    console.log('productList', productList);
-    console.log('basketList', basketList);
-    console.log('orderList', orderList);
     getOrder();
-    console.log('after get orders');
     const result = window.confirm('주문하시겠습니까?');
     if (result) {
       handleStatus();
-      console.log('confirm');
       postOrders();
     } else {
       return;
@@ -54,7 +50,6 @@ function CartSum() {
   };
 
   const postOrders = useEffect(() => {
-    console.log(11111);
     productList &&
       productList.map((item) => {
         orderList &&
