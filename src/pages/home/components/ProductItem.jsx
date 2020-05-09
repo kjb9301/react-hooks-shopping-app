@@ -66,6 +66,7 @@ const ContentSection = styled.section`
   flex-direction: column;
 
   p {
+    font-size: 1rem;
     margin-bottom: 5px;
 
     span {
@@ -75,8 +76,14 @@ const ContentSection = styled.section`
 
   .item-name {
     border-bottom: 1px solid gray;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     font-weight: bold;
+  }
+
+  @media (max-width: 1360px) {
+    p {
+      font-size: 0.75rem;
+    }
   }
 `;
 

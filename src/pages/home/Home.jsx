@@ -21,16 +21,20 @@ function Home() {
 const ListWrapper = styled.section`
   flex: 3;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-auto-rows: minmax(auto, auto);
   gap: 5%;
-  padding: 0 20px;
+  padding: 20px;
   overflow: hidden scroll;
+
+  @media (max-width: 1360px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 `;
 
 const DetailWrapper = styled.section`
   flex: 1.5;
-  padding: 10px 20px;
+  padding: 10px 30px;
 `;
 
 export default Home;

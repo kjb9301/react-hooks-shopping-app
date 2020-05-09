@@ -48,9 +48,7 @@ function BasketItem({ item }) {
         />
       </li>
       <li className='item-img'>
-        <div className='img'>
-          <img src={item.image} alt={item.name} />
-        </div>
+        <img src={item.image} alt={item.name} />
       </li>
       <li className='item-name'>{item.name}</li>
       <li className='item-provider'>{item.provider}</li>
@@ -74,22 +72,26 @@ function BasketItem({ item }) {
   );
 }
 
-const Wrapper = styled.article`
+const Wrapper = styled.ul`
   box-sizing: border-box;
   border-bottom: 1px solid gray;
+  display: flex;
+  padding: 0;
+  margin: 0;
 
   li {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
   }
 
   .item-img {
     width: 200px;
 
     img {
-      max-height: 100%;
+      max-width: 100%;
+      height: auto;
     }
   }
 
