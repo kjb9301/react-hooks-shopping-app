@@ -83,80 +83,77 @@ const ProductInfo = () => {
   if (!product) return null;
   return (
     <Wrapper>
-      <ImgSection>
-        <div className='box-img'>
+      <Container>
+        <ImgSection>
           <img src={product.img} alt={product.name} />
-        </div>
-      </ImgSection>
-      <ContentSection>
-        <p className='detail-name'>
-          <span>상품명 :</span>
-          {product.name}
-        </p>
-        <p className='detail-provider'>
-          <span>판매자 :</span>
-          {product.provider}
-        </p>
-        <p className='detail-price'>
-          <span>상품가격 :</span>
-          <span>{product.price}원</span>
-        </p>
-        <p className='detail-ship-price'>
-          <span>배송비 :</span>
-          {product.shipping.price}원
-        </p>
-        <ProductOption
-          options={product.options}
-          onChangeOption={handleChangeOption}
-        />
-        <div className='info-quantity'>
-          <span>수량 :</span>
-          <input
-            type='number'
-            value={quantity}
-            onChange={handleChangeQuantity}
-            min='1'
-            max='50'
+        </ImgSection>
+        <ContentSection>
+          <p className='detail-name'>
+            <span>상품명 :</span>
+            {product.name}
+          </p>
+          <p className='detail-provider'>
+            <span>판매자 :</span>
+            {product.provider}
+          </p>
+          <p className='detail-price'>
+            <span>상품가격 :</span>
+            <span>{product.price}원</span>
+          </p>
+          <p className='detail-ship-price'>
+            <span>배송비 :</span>
+            {product.shipping.price}원
+          </p>
+          <ProductOption
+            options={product.options}
+            onChangeOption={handleChangeOption}
           />
-        </div>
-        <div className='detail-btn'>
-          <button type='submit' onClick={checkBasket}>
-            장바구니 담기
-          </button>
-        </div>
-      </ContentSection>
+          <div className='info-quantity'>
+            <span>수량 :</span>
+            <input
+              type='number'
+              value={quantity}
+              onChange={handleChangeQuantity}
+              min='1'
+              max='50'
+            />
+          </div>
+          <div className='detail-btn'>
+            <button type='submit' onClick={checkBasket}>
+              장바구니 담기
+            </button>
+          </div>
+        </ContentSection>
+      </Container>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.article`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.12);
+`;
+
+const Container = styled.div`
+  padding: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 1360px) {
+    width: 200px;
+  }
 `;
 
 const ImgSection = styled.div`
   flex: 1;
-  padding: 10px;
   display: flex;
   justify-content: center;
 
-  .box-img {
-    width: 250px;
-    height: 350px;
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-
-  @media (max-width: 1360px) {
-    .box-img {
-      width: 200px;
-      height: 300px;
-    }
+  img {
+    max-width: 100%;
+    height: auto;
   }
 `;
 
@@ -164,12 +161,11 @@ const ContentSection = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* padding: 10px 40px; */
-  width: 250px;
+  padding-top: 20px;
 
   p {
     font-size: 1rem;
+    margin: 0;
     margin-bottom: 10px;
   }
 
@@ -199,18 +195,12 @@ const ContentSection = styled.div`
     }
 
     @media (max-width: 1360px) {
-      /* width: 200px; */
-
       p {
         font-size: 0.75rem;
       }
 
       .detail-btn {
         height: 40px;
-
-        button {
-          font-size: 10px;
-        }
       }
     }
   }
