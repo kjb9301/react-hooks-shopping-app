@@ -15,7 +15,7 @@ function BasketTableHeader({ checkedTF, onCheck }) {
       <li className='th-quantity'>수량</li>
       <li className='th-price'>금액</li>
       <li className='th-ship-price'>배송비</li>
-      <li className='btn'></li>
+      <li className='btn' />
     </Wrapper>
   );
 }
@@ -33,28 +33,34 @@ const Wrapper = styled.ul`
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    padding: 10px 0;
+    padding: 10px;
   }
 
   .th-chk {
-    width: 50px;
+    width: 5%;
   }
 
-  .th-img {
-    width: 200px;
+  .th-img,
+  .th-name {
+    width: 18%;
   }
 
-  .th-name,
   .th-provider,
   .th-option {
-    width: 120px;
+    width: 12%;
   }
 
-  .th-quantity,
+  .th-quantity {
+    width: 7%;
+  }
+
   .th-price,
-  .th-ship-price,
+  .th-ship-price {
+    width: 10%;
+  }
+
   .btn {
-    width: 80px;
+    width: 8%;
   }
 `;
 

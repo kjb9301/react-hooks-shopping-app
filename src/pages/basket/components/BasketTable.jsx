@@ -21,12 +21,8 @@ function BasketTable() {
 }
 
 const Wrapper = styled.div`
-  border: 1px solid red;
-  /* height: 90%;
-  width: 90%; */
-  /* display: flex;
-  flex-direction: column; */
-  /* border: 1px solid blue; */
+  width: 90%;
+  margin: auto;
 `;
 
 export default BasketTable;

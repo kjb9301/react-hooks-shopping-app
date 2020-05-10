@@ -73,7 +73,6 @@ function BasketItem({ item }) {
 }
 
 const Wrapper = styled.ul`
-  box-sizing: border-box;
   border-bottom: 1px solid gray;
   display: flex;
   padding: 0;
@@ -87,7 +86,7 @@ const Wrapper = styled.ul`
   }
 
   .item-img {
-    width: 200px;
+    width: 18%;
 
     img {
       max-width: 100%;
@@ -96,17 +95,20 @@ const Wrapper = styled.ul`
   }
 
   .item-chk {
-    width: 50px;
+    width: 5%;
   }
 
-  .item-name,
+  .item-name {
+    width: 18%;
+  }
+
   .item-provider,
   .item-option {
-    width: 120px;
+    width: 12%;
   }
 
   .item-quantity {
-    width: 80px;
+    width: 7%;
 
     input {
       width: 100%;
@@ -114,9 +116,12 @@ const Wrapper = styled.ul`
   }
 
   .item-price,
-  .item-ship-price,
+  .item-ship-price {
+    width: 10%;
+  }
+
   .item-btn {
-    width: 80px;
+    width: 8%;
   }
 `;
 
