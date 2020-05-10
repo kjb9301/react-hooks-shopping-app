@@ -16,7 +16,7 @@ const ProductInfo = () => {
   const product = useContext(GlobalStateContext).productOne;
   const basketList = useContext(GlobalStateContext).basketList;
   const dispatch = useContext(GlobalDispatchContext);
-  console.log(basketList);
+
   const handleChangeOption = (e) => {
     selectOption(e.target.value);
   };
@@ -142,7 +142,7 @@ const Container = styled.div`
   flex-direction: column;
 
   @media (max-width: 1360px) {
-    width: 200px;
+    width: 250px;
   }
 `;
 

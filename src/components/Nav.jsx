@@ -33,11 +33,11 @@ const Wrapper = styled.nav`
   background-color: rgb(230, 227, 224);
   border-radius: 8px;
   padding: 0 20px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 
   @media (max-width: 1360px) {
     height: 70px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 `;
 
