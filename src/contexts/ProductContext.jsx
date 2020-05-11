@@ -71,15 +71,17 @@ function globalReducer(state, action) {
     case 'POST_ORDERS':
       return {
         ...state,
-        productList: state.productList.map((item) => {
-          state.orderList.map((order) => {
-            if (item.id === order.id) {
-              console.log(order);
-              return { ...item, stock: item.stock - order.quantity };
-            }
-            return;
-          });
-        }),
+        productList:
+          state.productList &&
+          state.productList.map((item) => {
+            state.orderList.map((order) => {
+              if (item.id === order.id) {
+                console.log(order);
+                return { ...item, stock: item.stock - order.quantity };
+              }
+              return;
+            });
+          }),
       };
     default:
       return console.log('unhandled action type');

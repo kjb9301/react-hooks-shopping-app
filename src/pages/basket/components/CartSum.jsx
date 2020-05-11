@@ -30,18 +30,33 @@ function CartSum() {
 
   const handleClickOrder = () => {
     getOrder();
-    const result = window.confirm('주문하시겠습니까?');
+    const result = window.confirm('주문?');
+    setStatus(result);
     if (result) {
-      handleStatus();
-      postOrders();
+      // postOrders();
     } else {
       return;
     }
   };
 
-  const handleStatus = useCallback(() => {
-    setStatus(!status);
-  }, [status]);
+  // const handleClickOrder = () => {
+  //   getOrder();
+  //   const result = window.confirm('주문하시겠습니까?');
+  //   if (result) {
+  //     handleStatus();
+  //     postOrders();
+  //   } else {
+  //     return;
+  //   }
+  // };
+
+  // const handleStatus = useCallback(() => {
+  //   setStatus(!status);
+  // }, [status]);
+
+  console.log('productList', productList);
+  console.log('orderList', orderList);
+  console.log('status', status);
 
   const getOrder = () => {
     dispatch({
@@ -49,18 +64,25 @@ function CartSum() {
     });
   };
 
+  // const postOrders = useEffect(() => {
+  //   dispatch({
+  //     type: 'POST_ORDERS',
+  //   });
+  // }, [status]);
+
   const postOrders = useEffect(() => {
-    productList &&
+    const newArr =
+      productList &&
       productList.map((item) => {
         orderList &&
           orderList.map((order) => {
-            console.log(order);
             if (item.id === order.id) {
               return { ...item, stock: item.stock - order.quantity };
             }
             return;
           });
       });
+    console.log(newArr);
   }, [status]);
 
   return (
