@@ -13,9 +13,12 @@ function Nav() {
   return (
     <Wrapper>
       <NavBar>
-        {navInfo.map((info) => {
+        {navInfo.map((info, index) => {
           return (
-            <Menu className={location.pathname === info.path ? 'selected' : ''}>
+            <Menu
+              key={`menu-${index}`}
+              className={location.pathname === info.path ? 'selected' : ''}
+            >
               <Link to={info.path}>{info.menu}</Link>
             </Menu>
           );
