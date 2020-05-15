@@ -54,7 +54,6 @@ function globalReducer(state, action) {
       };
     case 'UPDATE_QUANTITY':
       const { id, value } = action.payload;
-      console.log(action.payload);
       return {
         ...state,
         basketList: state.basketList.map((item) =>
@@ -62,7 +61,6 @@ function globalReducer(state, action) {
         ),
       };
     case 'GET_ORDERS':
-      console.log('get orders');
       return {
         ...state,
         orderList: state.basketList.filter((item) => item.checked === true),

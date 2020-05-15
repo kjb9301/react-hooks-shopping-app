@@ -15,7 +15,6 @@ import {
 function CartSum() {
   console.log('cartSum render');
   const { productList, basketList, orderList } = useContext(GlobalStateContext);
-  const [status, setStatus] = useState(false);
   const dispatch = useContext(GlobalDispatchContext);
 
   const getTotalPrice = () => {
@@ -28,35 +27,24 @@ function CartSum() {
 
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
-  const handleClickOrder = () => {
-    getOrder();
+  const orderConfirm = () => {
     const result = window.confirm('주문?');
-    setStatus(result);
+    return result;
+  };
+
+  const handleClickOrder = async () => {
+    await getOrder();
+    const result = orderConfirm();
+    console.log(result);
     if (result) {
-      // postOrders();
+      await postOrders();
     } else {
       return;
     }
   };
 
-  // const handleClickOrder = () => {
-  //   getOrder();
-  //   const result = window.confirm('주문하시겠습니까?');
-  //   if (result) {
-  //     handleStatus();
-  //     postOrders();
-  //   } else {
-  //     return;
-  //   }
-  // };
-
-  // const handleStatus = useCallback(() => {
-  //   setStatus(!status);
-  // }, [status]);
-
   console.log('productList', productList);
   console.log('orderList', orderList);
-  console.log('status', status);
 
   const getOrder = () => {
     dispatch({
@@ -64,26 +52,16 @@ function CartSum() {
     });
   };
 
-  // const postOrders = useEffect(() => {
-  //   dispatch({
-  //     type: 'POST_ORDERS',
-  //   });
-  // }, [status]);
-
-  const postOrders = useEffect(() => {
-    const newArr =
-      productList &&
-      productList.map((item) => {
-        orderList &&
-          orderList.map((order) => {
-            if (item.id === order.id) {
-              return { ...item, stock: item.stock - order.quantity };
-            }
-            return;
-          });
-      });
-    console.log(newArr);
-  }, [status]);
+  const postOrders = () => {
+    console.log('porstOrders', orderList);
+    for (let i = 0; i < orderList.length; i++) {
+      for (let j = 0; j < productList.length; j++) {
+        if (orderList[i].id === productList[j].id) {
+          console.log(orderList[i].id);
+        }
+      }
+    }
+  };
 
   return (
     <Wrapper>
