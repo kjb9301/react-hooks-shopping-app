@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -46,7 +46,7 @@ function CartSum() {
     });
   };
 
-  const postOrders = () => {
+  const postOrders = useCallback(() => {
     console.log('porstOrders', orderList);
     for (let i = 0; i < orderList.length; i++) {
       for (let j = 0; j < productList.length; j++) {
@@ -55,7 +55,7 @@ function CartSum() {
         }
       }
     }
-  };
+  }, [orderList]);
 
   return (
     <Wrapper>
