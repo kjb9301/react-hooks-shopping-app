@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useCallback } from 'react';
+import React, { useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -20,7 +20,7 @@ function CartSum() {
 
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
-  const handleClickOrder = () => {
+  const onClickOrder = () => {
     const result = window.confirm('주문하시겠습니까?');
     if (result) {
       const orderList = getOrderList();
@@ -64,7 +64,7 @@ function CartSum() {
         <span>원</span>
       </div>
       <div className='box-btn'>
-        <button type='submit' className='btn-order' onClick={handleClickOrder}>
+        <button type='submit' className='btn-order' onClick={onClickOrder}>
           주문하기
         </button>
       </div>
