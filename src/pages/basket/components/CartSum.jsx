@@ -7,8 +7,7 @@ import {
 } from 'contexts/ProductContext';
 
 function CartSum() {
-  console.log('cartSum render');
-  const { productList, basketList, orderList } = useContext(GlobalStateContext);
+  const { productList, basketList } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
 
   const getTotalPrice = () => {
@@ -21,41 +20,42 @@ function CartSum() {
 
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
-  const orderConfirm = () => {
-    const result = window.confirm('주문?');
-    return result;
-  };
-
-  const handleClickOrder = async () => {
-    await getOrder();
-    const result = orderConfirm();
-    console.log(result);
+  const handleClickOrder = () => {
+    const result = window.confirm('주문하시겠습니까?');
     if (result) {
-      await postOrders();
+      const orderList = getOrderList();
+      const updatedProductList = updateProductList(orderList);
+      dispatch({ type: 'POST_ORDERS' });
+      postOrders(updatedProductList);
     } else {
       return;
     }
   };
 
-  console.log('productList', productList);
-  console.log('orderList', orderList);
-
-  const getOrder = () => {
-    dispatch({
-      type: 'GET_ORDERS',
-    });
+  const getOrderList = () => {
+    const orderList = basketList.filter((item) => item.checked === true);
+    return orderList;
   };
 
-  const postOrders = useCallback(() => {
-    console.log('porstOrders', orderList);
-    for (let i = 0; i < orderList.length; i++) {
-      for (let j = 0; j < productList.length; j++) {
-        if (orderList[i].id === productList[j].id) {
-          console.log(orderList[i].id);
+  const updateProductList = (orderList) => {
+    orderList.forEach((orderItem) => {
+      productList.map((productItem) => {
+        if (orderItem.id === productItem.id) {
+          const updatedOptions = productItem.options.map((option) =>
+            option.id === orderItem.option.id
+              ? { ...option, stock: option.stock - orderItem.quantity }
+              : { ...option }
+          );
+          productItem.options = updatedOptions;
         }
-      }
-    }
-  }, [orderList]);
+      });
+    });
+    return productList;
+  };
+
+  const postOrders = (updatedProductList) => {
+    localStorage.setItem('shoppingData', JSON.stringify(updatedProductList));
+  };
 
   return (
     <Wrapper>
