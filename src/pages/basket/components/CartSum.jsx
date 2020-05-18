@@ -23,9 +23,10 @@ function CartSum() {
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
   const onClickOrder = () => {
+    const orderList = getOrderList();
+    if (orderList.length < 1) return alert('선택된 상품이 없습니다.');
     const result = window.confirm('주문하시겠습니까?');
     if (result) {
-      const orderList = getOrderList();
       const updatedProductList = updateProductList(orderList);
       dispatch({ type: 'POST_ORDERS' });
       postOrders(updatedProductList);
