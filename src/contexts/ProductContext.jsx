@@ -31,10 +31,11 @@ function globalReducer(state, action) {
         basketList: state.basketList.concat(action.payload),
       };
     case 'ALL_CHECK':
+      console.log(action.checked);
       return {
         ...state,
         basketList: state.basketList.map((item) => {
-          return { ...item, checked: !item.checked };
+          return { ...item, checked: action.checked };
         }),
       };
     case 'CHECK_CART_PRODUCT':
