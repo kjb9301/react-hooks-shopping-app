@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function BasketTableHeader({ checkedTF, onCheck }) {
-  console.log(checkedTF);
+function BasketTableHeader({ allCheck, onChangeCheckAll }) {
   return (
     <Wrapper>
       <li className='th-chk'>
-        <input type='checkbox' checked={checkedTF} onChange={onCheck} />
+        <input type='checkbox' checked={allCheck} onChange={onChangeCheckAll} />
       </li>
       <li className='th-img'></li>
       <li className='th-name'>상품명</li>
