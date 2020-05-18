@@ -12,7 +12,9 @@ function CartSum() {
 
   const getTotalPrice = () => {
     const priceSum = basketList.reduce((acc, cur) => {
-      return cur.checked ? acc + cur.price * cur.quantity : acc + 0;
+      return cur.checked
+        ? acc + (cur.price * cur.quantity + cur.shipping.price)
+        : acc + 0;
     }, 0);
 
     return priceSum;
