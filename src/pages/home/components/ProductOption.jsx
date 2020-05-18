@@ -9,10 +9,11 @@ function ProductOption({ options, onChangeOption }) {
         <option value=''>--선택--</option>
         {options.map((option, index) => {
           return (
-            <option
-              key={index}
-              value={option.id}
-            >{`${option.color} / ${option.size}`}</option>
+            <option key={index} value={option.id} disabled={option.stock === 0}>
+              {option.stock === 0
+                ? `${option.color} / ${option.size} (품절)`
+                : `${option.color} / ${option.size}`}
+            </option>
           );
         })}
       </Select>
