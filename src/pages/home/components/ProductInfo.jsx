@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ import {
 } from 'contexts/ProductContext';
 
 const ProductInfo = () => {
+  console.log('productInfo render');
   const [selectedOption, selectOption] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
@@ -17,13 +18,19 @@ const ProductInfo = () => {
   const basketList = useContext(GlobalStateContext).basketList;
   const dispatch = useContext(GlobalDispatchContext);
 
-  const handleChangeOption = (e) => {
-    selectOption(e.target.value);
-  };
+  const handleChangeOption = useCallback(
+    (e) => {
+      selectOption(e.target.value);
+    },
+    [selectedOption]
+  );
 
-  const handleChangeQuantity = (e) => {
-    setQuantity(e.target.value);
-  };
+  const handleChangeQuantity = useCallback(
+    (e) => {
+      setQuantity(e.target.value);
+    },
+    [quantity]
+  );
 
   const preprocessData = () => {
     const optionIdx = product.options.findIndex(
@@ -53,17 +60,17 @@ const ProductInfo = () => {
   };
 
   const handleConfirmModal = () => {
-    const result = window.confirm('장바구니로 이동하시겠습니까?');
-    console.log(result);
+    const result = window.confirm(
+      `장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?`
+    );
     if (result) {
-      console.log(history);
       history.push('/basket');
     } else {
       return;
     }
   };
 
-  const checkBasket = async () => {
+  const checkBasket = () => {
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
     const checkTF =
       basketList &&
@@ -75,7 +82,7 @@ const ProductInfo = () => {
       alert('이미 장바구니에 존재합니다.');
     } else {
       const data = preprocessData();
-      await addToBasket(data);
+      addToBasket(data);
       handleConfirmModal();
     }
   };

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { GlobalDispatchContext } from 'contexts/ProductContext';
 
 const ProductItem = ({ listItem }) => {
+  console.log('productItem render');
   const dispatch = useContext(GlobalDispatchContext);
   const handleClickProd = (product) => {
     dispatch({
@@ -87,4 +88,4 @@ const ContentSection = styled.section`
   }
 `;
 
-export default ProductItem;
+export default React.memo(ProductItem);
