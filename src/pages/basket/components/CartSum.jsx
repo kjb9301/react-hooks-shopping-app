@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -22,7 +22,7 @@ function CartSum() {
 
   const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
 
-  const onClickOrder = () => {
+  const onClickOrder = useCallback(() => {
     const orderList = getOrderList();
     if (orderList.length < 1) return alert('선택된 상품이 없습니다.');
     const result = window.confirm('주문하시겠습니까?');
@@ -33,7 +33,7 @@ function CartSum() {
     } else {
       return;
     }
-  };
+  }, [basketList]);
 
   const getOrderList = () => {
     const orderList = basketList.filter((item) => item.checked === true);
@@ -51,6 +51,7 @@ function CartSum() {
           );
           productItem.options = updatedOptions;
         }
+        return productItem;
       });
     });
     return productList;

@@ -7,6 +7,7 @@ import {
 } from 'contexts/ProductContext';
 
 const ProductList = () => {
+  console.log('productList render');
   const dispatch = useContext(GlobalDispatchContext);
   useEffect(() => {
     const initData = JSON.parse(localStorage.getItem('shoppingData'));
