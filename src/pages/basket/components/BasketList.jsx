@@ -9,7 +9,10 @@ function BasketList() {
   console.log(basketList);
   console.log('basketList render');
 
-  if (!basketList) return <None>장바구니에 담긴 상품이 없습니다.</None>;
+  if (basketList.length < 1) {
+    return <None>장바구니에 담긴 상품이 없습니다.</None>;
+  }
+
   return (
     <Wrapper>
       {basketList.map((item) => {
