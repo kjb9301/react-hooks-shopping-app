@@ -15,10 +15,9 @@ export const GlobalDispatchContext = createContext();
 function globalReducer(state, action) {
   switch (action.type) {
     case 'GET_PRODUCTS':
-      console.log(action.payload);
       return {
         ...state,
-        productList: action.payload,
+        productList: action.data,
       };
     case 'GET_PRODUCT':
       return {
@@ -29,6 +28,7 @@ function globalReducer(state, action) {
       return {
         ...state,
         basketList: state.basketList.concat(action.payload),
+        productOne: null,
       };
     case 'ALL_CHECK':
       console.log(action.checked);

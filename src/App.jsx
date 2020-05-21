@@ -5,23 +5,7 @@ import * as Pages from 'pages';
 
 import { GlobalContextProvider } from 'contexts/ProductContext';
 
-import axios from 'axios';
-import img from 'images/item.png';
-
-const setInitData = async () => {
-  await axios
-    .get('data/goods.json')
-    .then((res) => {
-      const goods = res.data.goods.map((good) => (good = { ...good, img }));
-      localStorage.shoppingData = JSON.stringify(goods);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 function App() {
-  setInitData();
   return (
     <>
       <GlobalStyle />
