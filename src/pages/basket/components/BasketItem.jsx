@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { GlobalDispatchContext } from 'contexts/ProductContext';
 
 function BasketItem({ item }) {
-  console.log('basketItem render');
   const dispatch = useContext(GlobalDispatchContext);
 
   const handleQuantity = useCallback(
@@ -28,7 +27,7 @@ function BasketItem({ item }) {
   const handleChangeCheck = useCallback(() => {
     dispatch({
       type: 'CHECK_CART_PRODUCT',
-      payload: item.id,
+      id: item.id,
     });
   }, [item.checked]);
 

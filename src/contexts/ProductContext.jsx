@@ -4,8 +4,8 @@ export const GlobalStateContext = createContext();
 
 const initialState = {
   productList: null,
-  basketList: null,
   productOne: null,
+  basketList: [],
 };
 
 export const GlobalDispatchContext = createContext();
@@ -40,9 +40,7 @@ function globalReducer(state, action) {
       return {
         ...state,
         basketList: state.basketList.map((item) =>
-          item.id === action.payload
-            ? { ...item, checked: !item.checked }
-            : item
+          item.id === action.id ? { ...item, checked: !item.checked } : item
         ),
       };
     case 'REMOVE_IN_CART':

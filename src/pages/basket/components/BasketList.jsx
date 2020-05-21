@@ -5,9 +5,7 @@ import BasketItem from './BasketItem';
 import { GlobalStateContext } from 'contexts/ProductContext';
 
 function BasketList() {
-  const basketList = useContext(GlobalStateContext).basketList;
-  console.log(basketList);
-  console.log('basketList render');
+  const { basketList } = useContext(GlobalStateContext);
 
   if (basketList.length < 1) {
     return <None>장바구니에 담긴 상품이 없습니다.</None>;
