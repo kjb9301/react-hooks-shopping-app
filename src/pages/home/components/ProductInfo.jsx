@@ -9,7 +9,6 @@ import {
 } from 'contexts/ProductContext';
 
 const ProductInfo = () => {
-  console.log('productInfo render');
   const [selectedOption, selectOption] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
@@ -18,19 +17,22 @@ const ProductInfo = () => {
   const basketList = useContext(GlobalStateContext).basketList;
   const dispatch = useContext(GlobalDispatchContext);
 
-  const handleChangeOption = useCallback(
-    (e) => {
-      selectOption(e.target.value);
-    },
-    [selectedOption]
-  );
-
-  const handleChangeQuantity = useCallback(
-    (e) => {
-      setQuantity(e.target.value);
-    },
-    [quantity]
-  );
+  const dupCheckInCart = () => {
+    if (!selectedOption) return alert('옵션을 선택해 주십시오.');
+    const dupCheck =
+      basketList &&
+      basketList.some(
+        (item) =>
+          item.id === product.id && item.option.id === Number(selectedOption)
+      );
+    if (dupCheck) {
+      return alert('이미 장바구니에 존재합니다.');
+    } else {
+      const data = preprocessData();
+      addToCart(data);
+      handleConfirmModal();
+    }
+  };
 
   const preprocessData = () => {
     const optionIdx = product.options.findIndex(
@@ -49,13 +51,14 @@ const ProductInfo = () => {
       image: product.img,
       checked: true,
     };
+
     return data;
   };
 
-  const addToBasket = (data) => {
+  const addToCart = (data) => {
     dispatch({
-      type: 'ADD_TO_BASKET',
-      payload: data,
+      type: 'ADD_TO_CART',
+      data,
     });
   };
 
@@ -64,30 +67,28 @@ const ProductInfo = () => {
       `장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?`
     );
     if (result) {
-      history.push('/basket');
+      history.push('/cart');
     } else {
       return;
     }
   };
 
-  const checkBasket = () => {
-    if (!selectedOption) return alert('옵션을 선택해 주십시오.');
-    const checkTF =
-      basketList &&
-      basketList.some(
-        (item) =>
-          item.id === product.id && item.option.id === Number(selectedOption)
-      );
-    if (checkTF) {
-      alert('이미 장바구니에 존재합니다.');
-    } else {
-      const data = preprocessData();
-      addToBasket(data);
-      handleConfirmModal();
-    }
-  };
+  const handleChangeOption = useCallback(
+    (e) => {
+      selectOption(e.target.value);
+    },
+    [selectedOption]
+  );
+
+  const onChangeQuantity = useCallback(
+    (e) => {
+      setQuantity(e.target.value);
+    },
+    [quantity]
+  );
 
   if (!product) return null;
+
   return (
     <Wrapper>
       <Container>
@@ -120,13 +121,13 @@ const ProductInfo = () => {
             <input
               type='number'
               value={quantity}
-              onChange={handleChangeQuantity}
+              onChange={onChangeQuantity}
               min='1'
               max='50'
             />
           </div>
           <div className='detail-btn'>
-            <button type='submit' onClick={checkBasket}>
+            <button type='submit' onClick={dupCheckInCart}>
               장바구니 담기
             </button>
           </div>

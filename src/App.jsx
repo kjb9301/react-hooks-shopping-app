@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import * as Pages from 'pages';
 
+import * as Pages from 'pages';
 import { GlobalContextProvider } from 'contexts/ProductContext';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <GlobalContextProvider>
           <Switch>
             <Route exact path='/' component={Pages.Home} />
-            <Route path='/basket' component={Pages.Basket} />
+            <Route path='/cart' component={Pages.Basket} />
           </Switch>
         </GlobalContextProvider>
       </BrowserRouter>
@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: rgb(107, 106, 106);
 
     &:visited {
       text-decoration: none;

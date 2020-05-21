@@ -4,17 +4,18 @@ import styled from 'styled-components';
 import { GlobalDispatchContext } from 'contexts/ProductContext';
 
 const ProductItem = ({ listItem }) => {
-  console.log('productItem render');
   const dispatch = useContext(GlobalDispatchContext);
-  const handleClickProd = (product) => {
+
+  const onClickProduct = (product) => {
     dispatch({
       type: 'GET_PRODUCT',
-      payload: product,
+      data: product,
     });
   };
+
   return (
     <Wrapper>
-      <Container onClick={() => handleClickProd(listItem)}>
+      <Container onClick={() => onClickProduct(listItem)}>
         <ImgSection>
           <img className='item-img' src={listItem.img} alt={listItem.name} />
         </ImgSection>
