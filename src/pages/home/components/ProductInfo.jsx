@@ -17,7 +17,7 @@ const ProductInfo = () => {
   const cartList = useContext(GlobalStateContext).cartList;
   const dispatch = useContext(GlobalDispatchContext);
 
-  const dupCheckInCart = useCallback(() => {
+  const dupCheckInCart = () => {
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
     const dupCheck =
       cartList &&
@@ -32,7 +32,7 @@ const ProductInfo = () => {
       addToCart(data);
       handleConfirmModal();
     }
-  }, [cartList]);
+  };
 
   const preprocessData = () => {
     const optionIdx = product.options.findIndex(
