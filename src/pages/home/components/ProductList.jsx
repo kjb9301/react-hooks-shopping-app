@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 
-import ProductItem from 'pages/home/components//ProductItem';
+import ProductItem from './ProductItem';
 import {
   GlobalStateContext,
   GlobalDispatchContext,
@@ -10,26 +10,25 @@ import {
 import img from 'images/item.png';
 
 const ProductList = () => {
-  console.log('productList render');
   const dispatch = useContext(GlobalDispatchContext);
   const { productList } = useContext(GlobalStateContext);
 
   useEffect(() => {
-    console.log(!localStorage.productData);
     if (!localStorage.productData) {
-      setInitData();
+      setDataInLocalstorage();
     } else {
-      console.log('get products');
       getProducts();
     }
   }, []);
 
-  const setInitData = async () => {
+  const setDataInLocalstorage = async () => {
     await axios
       .get('data/goods.json')
       .then((res) => {
-        const goods = res.data.goods.map((good) => (good = { ...good, img }));
-        localStorage.productData = JSON.stringify(goods);
+        const products = res.data.goods.map(
+          (good) => (good = { ...good, img })
+        );
+        localStorage.productData = JSON.stringify(products);
       })
       .then(() => {
         getProducts();
@@ -46,12 +45,13 @@ const ProductList = () => {
       data: productData,
     });
   };
-  console.log(productList);
+
   if (!productList) return null;
+
   return (
     <>
-      {productList.map((listItem) => {
-        return <ProductItem key={listItem.id} listItem={listItem} />;
+      {productList.map((item) => {
+        return <ProductItem key={item.id} listItem={item} />;
       })}
     </>
   );

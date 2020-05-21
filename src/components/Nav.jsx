@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const navInfo = [
   { path: '/', menu: '상품목록' },
-  { path: '/basket', menu: '장바구니' },
+  { path: '/cart', menu: '장바구니' },
 ];
 
 function Nav() {

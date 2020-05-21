@@ -3,11 +3,9 @@ import React, { createContext, useReducer } from 'react';
 export const GlobalStateContext = createContext();
 
 const initialState = {
-  // productList: JSON.parse(localStorage.getItem('shoppingData')),
   productList: null,
-  basketList: null || [],
+  basketList: null,
   productOne: null,
-  selectedProd: null,
 };
 
 export const GlobalDispatchContext = createContext();
@@ -22,12 +20,12 @@ function globalReducer(state, action) {
     case 'GET_PRODUCT':
       return {
         ...state,
-        productOne: action.payload,
+        productOne: action.data,
       };
-    case 'ADD_TO_BASKET':
+    case 'ADD_TO_CART':
       return {
         ...state,
-        basketList: state.basketList.concat(action.payload),
+        basketList: state.basketList.concat(action.data),
         productOne: null,
       };
     case 'ALL_CHECK':
