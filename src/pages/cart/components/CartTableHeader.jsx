@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function BasketTableHeader({ allCheck, onChangeCheckAll }) {
+function CartTableHeader({ allCheck, onChangeCheckAll }) {
   return (
     <Wrapper>
       <li className='th-chk'>
@@ -63,4 +63,4 @@ const Wrapper = styled.ul`
   }
 `;
 
-export default BasketTableHeader;
+export default CartTableHeader;

@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import BasketItem from './BasketItem';
+import CartItem from './CartItem';
 import { GlobalStateContext } from 'contexts/ProductContext';
 
-function BasketList() {
-  const { basketList } = useContext(GlobalStateContext);
+function CartList() {
+  const { cartList } = useContext(GlobalStateContext);
 
-  if (basketList.length < 1) {
+  if (cartList.length < 1) {
     return <None>장바구니에 담긴 상품이 없습니다.</None>;
   }
 
   return (
     <Wrapper>
-      {basketList.map((item) => {
-        return <BasketItem key={item.id} item={item} />;
+      {cartList.map((item) => {
+        return <CartItem key={item.id} item={item} />;
       })}
     </Wrapper>
   );
@@ -33,4 +33,4 @@ const None = styled.div`
   align-items: center;
 `;
 
-export default BasketList;
+export default CartList;

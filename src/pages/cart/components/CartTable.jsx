@@ -1,22 +1,22 @@
 import React, { useState, useContext, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 
-import BasketTableHeader from './BasketTableHeader';
-import BasketList from './BasketList';
+import CartTableHeader from './CartTableHeader';
+import CartList from './CartList';
 import {
   GlobalStateContext,
   GlobalDispatchContext,
 } from 'contexts/ProductContext';
 
-function BasketTable() {
+function CartTable() {
   const [allCheck, setAllCheck] = useState(true);
-  const { basketList } = useContext(GlobalStateContext);
+  const { cartList } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
 
   useEffect(() => {
-    const hasAllCheck = basketList.every((item) => item.checked);
+    const hasAllCheck = cartList.every((item) => item.checked);
     setAllCheck(hasAllCheck);
-  }, [basketList]);
+  }, [cartList]);
 
   const onChangeCheckAll = useCallback(
     (e) => {
@@ -28,11 +28,11 @@ function BasketTable() {
 
   return (
     <Wrapper>
-      <BasketTableHeader
+      <CartTableHeader
         allCheck={allCheck}
         onChangeCheckAll={onChangeCheckAll}
       />
-      <BasketList />
+      <CartList />
     </Wrapper>
   );
 }
@@ -42,4 +42,4 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
-export default BasketTable;
+export default CartTable;

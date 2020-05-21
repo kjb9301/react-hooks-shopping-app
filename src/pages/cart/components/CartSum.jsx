@@ -7,11 +7,11 @@ import {
 } from 'contexts/ProductContext';
 
 function CartSum() {
-  const { productList, basketList } = useContext(GlobalStateContext);
+  const { productList, cartList } = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
 
   const getTotalPrice = () => {
-    const priceSum = basketList.reduce((acc, cur) => {
+    const priceSum = cartList.reduce((acc, cur) => {
       return cur.checked
         ? acc + (cur.price * cur.quantity + cur.shipping.price)
         : acc + 0;
@@ -20,7 +20,7 @@ function CartSum() {
     return priceSum;
   };
 
-  const totalPrice = useMemo(() => getTotalPrice(), [basketList]);
+  const totalPrice = useMemo(() => getTotalPrice(), [cartList]);
 
   const onClickOrder = useCallback(() => {
     const orderList = getOrderList();
@@ -33,10 +33,10 @@ function CartSum() {
     } else {
       return;
     }
-  }, [basketList]);
+  }, [cartList]);
 
   const getOrderList = () => {
-    const orderList = basketList.filter((item) => item.checked === true);
+    const orderList = cartList.filter((item) => item.checked === true);
     return orderList;
   };
 

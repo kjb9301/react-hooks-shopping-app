@@ -13,7 +13,7 @@ function App() {
         <GlobalContextProvider>
           <Switch>
             <Route exact path='/' component={Pages.Home} />
-            <Route path='/cart' component={Pages.Basket} />
+            <Route path='/cart' component={Pages.Cart} />
           </Switch>
         </GlobalContextProvider>
       </BrowserRouter>

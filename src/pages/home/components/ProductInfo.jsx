@@ -14,14 +14,14 @@ const ProductInfo = () => {
   const history = useHistory();
 
   const product = useContext(GlobalStateContext).productOne;
-  const basketList = useContext(GlobalStateContext).basketList;
+  const cartList = useContext(GlobalStateContext).cartList;
   const dispatch = useContext(GlobalDispatchContext);
 
   const dupCheckInCart = () => {
     if (!selectedOption) return alert('옵션을 선택해 주십시오.');
     const dupCheck =
-      basketList &&
-      basketList.some(
+      cartList &&
+      cartList.some(
         (item) =>
           item.id === product.id && item.option.id === Number(selectedOption)
       );

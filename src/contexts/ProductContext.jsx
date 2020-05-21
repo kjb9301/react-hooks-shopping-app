@@ -5,7 +5,7 @@ export const GlobalStateContext = createContext();
 const initialState = {
   productList: null,
   productOne: null,
-  basketList: [],
+  cartList: [],
 };
 
 export const GlobalDispatchContext = createContext();
@@ -25,41 +25,41 @@ function globalReducer(state, action) {
     case 'ADD_TO_CART':
       return {
         ...state,
-        basketList: state.basketList.concat(action.data),
+        cartList: state.cartList.concat(action.data),
         productOne: null,
       };
     case 'ALL_CHECK':
       console.log(action.checked);
       return {
         ...state,
-        basketList: state.basketList.map((item) => {
+        cartList: state.cartList.map((item) => {
           return { ...item, checked: action.checked };
         }),
       };
     case 'CHECK_CART_PRODUCT':
       return {
         ...state,
-        basketList: state.basketList.map((item) =>
+        cartList: state.cartList.map((item) =>
           item.id === action.id ? { ...item, checked: !item.checked } : item
         ),
       };
     case 'REMOVE_IN_CART':
       return {
         ...state,
-        basketList: state.basketList.filter((item) => item.id !== action.id),
+        cartList: state.cartList.filter((item) => item.id !== action.id),
       };
     case 'UPDATE_QUANTITY':
       const { id, value } = action.payload;
       return {
         ...state,
-        basketList: state.basketList.map((item) =>
+        cartList: state.cartList.map((item) =>
           item.id === id ? { ...item, quantity: value } : item
         ),
       };
     case 'POST_ORDERS':
       return {
         ...state,
-        basketList: state.basketList.filter((item) => item.checked === false),
+        cartList: state.cartList.filter((item) => item.checked === false),
       };
     default:
       return console.log('unhandled action type');

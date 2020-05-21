@@ -2,23 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Template from 'components/Template';
-import BasketTable from './components/BasketTable';
+import CartTable from './components/CartTable';
 import CartSum from './components/CartSum';
 
-function Basket() {
+function Cart() {
   return (
     <Template>
-      <BasketSection>
-        <BasketTable />
+      <CartSection>
+        <CartTable />
         <CartSum />
-      </BasketSection>
+      </CartSection>
     </Template>
   );
 }
 
-const BasketSection = styled.section`
+const CartSection = styled.section`
   width: 100%;
   height: 100%;
 `;
 
-export default Basket;
+export default Cart;
