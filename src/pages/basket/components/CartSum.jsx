@@ -58,7 +58,7 @@ function CartSum() {
   };
 
   const postOrders = (updatedProductList) => {
-    localStorage.setItem('shoppingData', JSON.stringify(updatedProductList));
+    localStorage.setItem('productData', JSON.stringify(updatedProductList));
   };
 
   return (
