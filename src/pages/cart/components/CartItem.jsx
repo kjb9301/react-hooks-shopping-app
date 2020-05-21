@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { GlobalDispatchContext } from 'contexts/ProductContext';
 
-function BasketItem({ item }) {
+function CartItem({ item }) {
   const dispatch = useContext(GlobalDispatchContext);
 
   const handleQuantity = useCallback(
@@ -125,4 +125,4 @@ const Wrapper = styled.ul`
   }
 `;
 
-export default BasketItem;
+export default CartItem;
